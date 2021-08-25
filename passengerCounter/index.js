@@ -2,9 +2,15 @@
 
 // initialize count to 0
 let count = 0;
+let countEL = document.getElementById("count-el");
 // listen for clicks and increment count
 function increment() {
     count += 1;
     // change count-et in html to reflect new count
-    document.getElementById("count-el").innerText = count;
+    countEL.innerText = count;
+}
+
+// Create a function called save() which logs out the count when it is called
+function save() {
+    console.log(count);
 }
