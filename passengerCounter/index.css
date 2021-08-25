@@ -62,3 +62,7 @@ button {
     background: darkgreen;
     border-radius: 10px;
 }
+
+p {
+    position: relative;
+}

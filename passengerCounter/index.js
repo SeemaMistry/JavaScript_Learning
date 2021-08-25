@@ -12,5 +12,12 @@ function increment() {
 
 // Create a function called save() which logs out the count when it is called
 function save() {
-    console.log(count);
+    return count;
 }
+
+let sentence = document.getElementById("enteries")
+function enteries() {
+    sentence.innerText += (" " + save() + " -");
+
+}
+
