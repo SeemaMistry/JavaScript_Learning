@@ -37,3 +37,21 @@ h2 {
     margin-top: 0;
     margin-bottom: 20px;
 }
+
+button {
+    position: relative;
+    border: none;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    width: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#increment-btn {
+
+    display:inline-block;
+    background: darkred;
+    border-radius: 10px;
+}
