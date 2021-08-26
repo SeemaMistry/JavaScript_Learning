@@ -7,7 +7,7 @@ let countEL = document.getElementById("count-el");
 function increment() {
     count += 1;
     // change count-et in html to reflect new count
-    countEL.innerText = count;
+    countEL.textContent = count;
 }
 
 // Create a function called save() which logs out the count when it is called
