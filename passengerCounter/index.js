@@ -11,13 +11,11 @@ function increment() {
 }
 
 // Create a function called save() which logs out the count when it is called
+let sentence = document.getElementById("entries")
 function save() {
-    return count;
+    sentence.textContent += (count + " - ");
+    count = 0;
+    countEL.textContent = count;
 }
 
-let sentence = document.getElementById("entries")
-// Create enteries that print out each saved entry
-function entries() {
-    sentence.textContent += (save() + " - ");
-}
 
