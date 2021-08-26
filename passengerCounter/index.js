@@ -15,9 +15,9 @@ function save() {
     return count;
 }
 
-let sentence = document.getElementById("enteries")
-function enteries() {
-    sentence.innerText += (" " + save() + " -");
-
+let sentence = document.getElementById("entries")
+// Create enteries that print out each saved entry
+function entries() {
+    sentence.textContent += (save() + " - ");
 }
 
