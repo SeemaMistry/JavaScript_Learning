@@ -1,4 +1,5 @@
-// document.getElementById("count-el").innerText = 5;
+//  https://www.youtube.com/watch?v=jS4aFq5-91M&t=7s
+//stop time: 1:23:29
 
 // initialize count to 0
 let count = 0;
