@@ -6,17 +6,17 @@ document.getElementById("num2-el").textContent = num2
 
 let sum = document.getElementById("sum")
 function add() {
-    sum.innerHTML = sum.innerHTML + (num1+num2)
+    sum.innerHTML = "Sum: " + (num1+num2)
 }
 
 function subtract() {
-    sum.innerHTML = sum.innerHTML + (num1-num2)
+    sum.innerHTML = "Sum: " + (num1-num2)
 }
 
 function mutiply() {
-    sum.innerHTML = sum.innerHTML + (num1*num2)
+    sum.innerHTML = "Sum: " + (num1*num2)
 }
 
 function divide() {
-    sum.innerHTML = sum.innerHTML + (num1/num2)
+    sum.innerHTML = "Sum: " + (num1/num2)
 }
