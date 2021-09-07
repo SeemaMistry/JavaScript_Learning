@@ -1,5 +1,7 @@
 /* initailize default attributes */
-let sum = 10
+let firstCard = 10
+let secondCard = 4
+let sum = firstCard + secondCard
 let hasBlackJack = false
 let isAlive = true
 let message = ""
@@ -7,9 +9,10 @@ let message = ""
 let msgEL = document.getElementById("msg-el")
 // let sumEL = document.getElementById("sum-el")
 let sumEL = document.querySelector("#sum-el")
-
+let cardEL = document.getElementById("card-el")
 
 function startGame() {
+    cardEL.textContent += firstCard + ", " + secondCard
     sumEL.textContent += sum
     if (sum <= 20) {
         message = "Do you want another card?"
