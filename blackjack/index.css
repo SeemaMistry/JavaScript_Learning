@@ -27,7 +27,7 @@ p {
 
 }
 
-#start-btn {
+button {
     /*its in main so position is already relative*/
     color: #016f32;
     width: 200px;
@@ -40,4 +40,5 @@ p {
     font-size: 20px;
     border: none;
     border-radius: 2%;
+    margin-bottom: 10px;
 }
