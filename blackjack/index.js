@@ -5,13 +5,16 @@ let isAlive = true
 let message = ""
 
 let msgEL = document.getElementById("msg-el")
+// let sumEL = document.getElementById("sum-el")
+let sumEL = document.querySelector("#sum-el")
 
 
 function startGame() {
+    sumEL.textContent += sum
     if (sum <= 20) {
         message = "Do you want another card?"
     } else if (sum === 21) {
-        message = "Woohoo! You've got Blackjack!"
+        message = "You've got Blackjack!"
         hasBlackJack = true
     } else {
         message = "You're out of the game!"
