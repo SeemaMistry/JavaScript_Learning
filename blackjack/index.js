@@ -12,8 +12,8 @@ let sumEL = document.querySelector("#sum-el")
 let cardEL = document.getElementById("card-el")
 
 function startGame() {
-    cardEL.textContent += firstCard + ", " + secondCard
-    sumEL.textContent += sum
+    cardEL.textContent = "Cards: " + firstCard + ", " + secondCard
+    sumEL.textContent = "Sum: " + sum
     if (sum <= 20) {
         message = "Do you want another card?"
     } else if (sum === 21) {
@@ -26,4 +26,10 @@ function startGame() {
     console.log(message)
     msgEL.textContent = message
 
+} 
+
+function newCard() {
+    let card = 3
+    sum += card
+    startGame()
 }
