@@ -12,6 +12,10 @@ let msgEL = document.getElementById("msg-el")
 let sumEL = document.querySelector("#sum-el")
 let cardEL = document.getElementById("card-el")
 
+function startGame() {
+    renderGame()
+}
+
 function renderGame() {
     cardEL.textContent = "Cards: "
     for (c in hand) {
