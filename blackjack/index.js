@@ -1,6 +1,6 @@
 /* initailize default attributes */
-let firstCard = 10
-let secondCard = 4
+let firstCard = getRandomCard()
+let secondCard = getRandomCard()
 let hand = [firstCard, secondCard]
 let sum = firstCard + secondCard
 let hasBlackJack = false
@@ -11,6 +11,19 @@ let msgEL = document.getElementById("msg-el")
 // let sumEL = document.getElementById("sum-el")
 let sumEL = document.querySelector("#sum-el")
 let cardEL = document.getElementById("card-el")
+
+function getRandomCard() {
+    /*How this line of code works:
+    Math.random() outputs = 0.000 to 0.999
+    Math.random() * 10 outputs = 0.000 to 9.99
+    Math.floor(Math.random() * 10) outputs = 0 1 2 3 4 5 6 7 8 9
+    
+    However, 0-9 outputs for a card game need to be from 1-10.
+    Simpliest way is to shift the outputs up by 1:
+    Math.floor(Math.random() *10) + 1 outputs = 1 2 3 4 5 6 7 8 9 10
+    */
+    return Math.floor(Math.random() * 10) + 1
+}
 
 function startGame() {
     renderGame()
@@ -37,7 +50,7 @@ function renderGame() {
 } 
 
 function newCard() {
-    let card = 3
+    let card = getRandomCard()
     hand.push(card)
     sum += card
     renderGame()
