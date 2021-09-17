@@ -1,10 +1,8 @@
 /* initailize default attributes */
-let firstCard = getRandomCard()
-let secondCard = getRandomCard()
-let hand = [firstCard, secondCard]
-let sum = firstCard + secondCard
+let hand = []
+let sum = 0
 let hasBlackJack = false
-let isAlive = true
+let isAlive = false
 let message = ""
 
 let msgEL = document.getElementById("msg-el")
@@ -17,16 +15,36 @@ function getRandomCard() {
     Math.random() outputs = 0.000 to 0.999
     Math.random() * 10 outputs = 0.000 to 9.99
     Math.floor(Math.random() * 10) outputs = 0 1 2 3 4 5 6 7 8 9
-    
+
     However, 0-9 outputs for a card game need to be from 1-10.
     Simpliest way is to shift the outputs up by 1:
     Math.floor(Math.random() *10) + 1 outputs = 1 2 3 4 5 6 7 8 9 10
     */
-    return Math.floor(Math.random() * 10) + 1
+    let randomNum = Math.floor(Math.random() * 13) + 1
+    if (randomNum > 10) {
+        return 10
+    } else if (randomNum === 1) {
+        return 11
+    } else {
+        return randomNum
+    }
 }
 
 function startGame() {
+    // initialize the player's starting hand
+    isAlive = true
+    if (hand.length > 0) {
+        hand = []
+        sum = 0
+    }
+    let firstCard = getRandomCard()
+    let secondCard = getRandomCard()
+    hand.push(firstCard)
+    hand.push(secondCard)
+    sum += firstCard
+    sum += secondCard
     renderGame()
+
 }
 
 function renderGame() {
