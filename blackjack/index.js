@@ -43,6 +43,7 @@ function startGame() {
     hand.push(secondCard)
     sum += firstCard
     sum += secondCard
+    hasBlackJack = false
     renderGame()
 
 }
@@ -68,8 +69,22 @@ function renderGame() {
 } 
 
 function newCard() {
-    let card = getRandomCard()
-    hand.push(card)
-    sum += card
-    renderGame()
+    /* Requirements to get a new card:
+    isAlive === true (for both cases below)
+    hand.length > 2
+    sum < 21 (if its 21 or over, they won or went bust and should not get anymore cards)
+    */
+    if (isAlive === true && hasBlackJack === false && (sum < 21 || hand.length > 2)) {
+        let card = getRandomCard()
+        hand.push(card)
+        sum += card
+        renderGame()
+    } else {
+        if (hand.length < 1) {
+            msgEL.textContent = "\nPress Start Game to begin a new round!"
+        } else {
+            msgEL.textContent = "\nYou cannot recieve anymore cards.\nPress Start Game to begin a new round!"
+        }
+    }
+    
 }
