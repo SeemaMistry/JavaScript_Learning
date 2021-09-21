@@ -4,11 +4,19 @@ let sum = 0
 let hasBlackJack = false
 let isAlive = false
 let message = ""
+// create player object with attributes name and chips
+let player = {
+    name: "Per",
+    chips: 100
+}
 
 let msgEL = document.getElementById("msg-el")
 // let sumEL = document.getElementById("sum-el")
 let sumEL = document.querySelector("#sum-el")
 let cardEL = document.getElementById("card-el")
+let playerEL = document.getElementById("player-el")
+
+playerEL.textContent = player.name + ": $" +player.chips
 
 function getRandomCard() {
     /*How this line of code works:
