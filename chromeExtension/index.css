@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+input {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 100%; /* width is 100% of page size + 10px + 10px (of the left-right padding) so it goes out of page*/
+    box-sizing: border-box; /* Takes into account the padding and ensure element spans across full border of page and not over-flowing*/
+    border: 1px solid #5f9341;
+    margin-bottom: 4px;
+}
+
+button {
+    background-color:5f9341;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px; /*top and bottom = 10px, left and right = 20px*/
+    font-size: 20;
+    border: none;
+}
