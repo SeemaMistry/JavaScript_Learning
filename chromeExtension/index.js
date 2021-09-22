@@ -15,7 +15,7 @@ function renderLeads() {
 
     for (link in myLeads) {
         // add each myLead element with its html tags to listItems
-        listItems += "<li>" + myLeads[link] + "</li>"
+        listItems += '<li><a href="' + myLeads[link] + '" target="_blank">' + myLeads[link] + '</a> </li>'
     }
     ulEl.innerHTML = listItems // Call DOM manipulation on listItems
 }
