@@ -1,8 +1,8 @@
-let saveEl = document.getElementById("save-el")
 let myLeads = ["www.one.com", "www.two.com", "www.three.com"]
 const inputBtn = document.getElementById("input-btn")
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
+
 /* This is one method of creating an event listener:
     function saveLead() {
         saveEl.textContent = "Button clicked!"
@@ -20,14 +20,37 @@ Requires:
     - onclick and function written inside addEventListener parameters
     - NOTE: no function naming required
 */ 
-
 inputBtn.addEventListener("click", function () {
     myLeads.push(inputEl.value)
 })
 
+// create varible to store all the list items
+let listItems = ""
 
 // Automatically log out contents of myLeads to screen
 for (link in myLeads) {
-    // console.log(myLeads[link])
-    ulEl.innerHTML += "<li>" + myLeads[link] + "</li>"
+    // add each myLead element with its html tags to listItems
+     listItems += "<li>" + myLeads[link] + "</li>"
+
+    /* Alternative way to create html elements here:
+        Method 1: Call .innerHTML
+            // innerHTML will parse string elements that are html code as html code
+            ulEl.innerHTML += "<li>" + myLeads[link] + "</li>"
+
+        Method 2: Create li element
+            // create element
+            let li = document.createElement("li")
+            // set text content
+            li.textContent = myLeads[link]
+            // append to ul
+            ulEl.append(li)
+    */
 }
+/* Why not just do DOM manipulation inside for loop? 
+    Remember this key phrase:
+        "DOM manipulation comes at a cost!"
+        So the less times you call on DOM manipulation, the more efficient your code.
+    
+    Calling DOM manipulation each time in for loop has a higher cost than calling DOM manipulation once at the end 
+*/
+ulEl.innerHTML = listItems 
