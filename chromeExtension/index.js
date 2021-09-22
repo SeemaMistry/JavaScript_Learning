@@ -1,5 +1,5 @@
 let saveEL = document.getElementById("save-el")
 
-function saveMSG() {
+function saveLead() {
     saveEL.textContent = "Button clicked!"
 }
