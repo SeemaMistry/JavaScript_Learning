@@ -29,5 +29,5 @@ inputBtn.addEventListener("click", function () {
 // Automatically log out contents of myLeads to screen
 for (link in myLeads) {
     // console.log(myLeads[link])
-    ulEl.textContent += myLeads[link] + "\n"
+    ulEl.innerHTML += "<li>" + myLeads[link] + "</li>"
 }
