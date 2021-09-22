@@ -5,7 +5,8 @@ const ulEl = document.getElementById("ul-el")
 
 
 inputBtn.addEventListener("click", function () {
-    myLeads.push(inputEl.value)
+    myLeads.push(inputEl.value) // .value allows js to read html input-elements
+    inputEl.value = "" // clear the input-el bar when you click save button
     renderLeads()
 })
 
