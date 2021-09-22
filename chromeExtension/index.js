@@ -21,5 +21,8 @@ Requires:
 */ 
 
 inputBtn.addEventListener("click", function () {
-    saveEl.textContent = "Button clicked!"
+    myLeads.push(inputEl.value)
+    saveEl.textContent = myLeads
+    console.log(myLeads)
+
 })
