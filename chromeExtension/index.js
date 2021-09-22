@@ -1,7 +1,8 @@
 let saveEl = document.getElementById("save-el")
-let myLeads = []
+let myLeads = ["www.one.com", "www.two.com", "www.three.com"]
 const inputBtn = document.getElementById("input-btn")
 const inputEl = document.getElementById("input-el")
+const ulEl = document.getElementById("ul-el")
 /* This is one method of creating an event listener:
     function saveLead() {
         saveEl.textContent = "Button clicked!"
@@ -22,7 +23,11 @@ Requires:
 
 inputBtn.addEventListener("click", function () {
     myLeads.push(inputEl.value)
-    saveEl.textContent = myLeads
-    console.log(myLeads)
-
 })
+
+
+// Automatically log out contents of myLeads to screen
+for (link in myLeads) {
+    // console.log(myLeads[link])
+    ulEl.textContent += myLeads[link] + "\n"
+}
