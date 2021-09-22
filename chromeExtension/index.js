@@ -1,4 +1,4 @@
-let myLeads = ["www.one.com", "www.two.com", "www.three.com"]
+let myLeads = []
 const inputBtn = document.getElementById("input-btn")
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
@@ -6,17 +6,18 @@ const ulEl = document.getElementById("ul-el")
 
 inputBtn.addEventListener("click", function () {
     myLeads.push(inputEl.value)
+    renderLeads()
 })
 
-// create varible to store all the list items
-let listItems = ""
+function renderLeads() {
+    let listItems = "" // create varible to store all the list items
 
-for (link in myLeads) {
-    // add each myLead element with its html tags to listItems
-     listItems += "<li>" + myLeads[link] + "</li>"
+    for (link in myLeads) {
+        // add each myLead element with its html tags to listItems
+        listItems += "<li>" + myLeads[link] + "</li>"
+    }
+    ulEl.innerHTML = listItems // Call DOM manipulation on listItems
 }
-// Call DOM manipulation on listItems
-ulEl.innerHTML = listItems 
 
 
 // Below are just some notes on the code:
