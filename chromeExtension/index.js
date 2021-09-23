@@ -5,35 +5,34 @@ const ulEl = document.getElementById("ul-el")
 const deleteBtn = document.getElementById("delete-btn")
 
 // get the leads from localStorage, store it in a variable and log out the variable
-const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
+const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads")) // returns value (parsed into JS code) stored in key="myLeads"
 if (leadsFromLocalStorage) {
-    myLeads = leadsFromLocalStorage // set myLeads to localStorage key myLeads
-    renderLeads() // render out local storage and presist through refreshing page
+    myLeads = leadsFromLocalStorage // set myLeads array to equal localStorage key myLeads
+    renderLeads(myLeads) // render out local storage and presist through refreshing page
 }
 
 // on double click, clear localStorage, myLeads array and DOM
 deleteBtn.addEventListener("dblclick", function() {
     localStorage.clear()
     myLeads = []
-    renderLeads()
+    renderLeads(myLeads)
 })
 
 inputBtn.addEventListener("click", function () {
     myLeads.push(inputEl.value) // .value allows js to read html input-elements
     inputEl.value = "" // clear the input-el bar when you click save button
     localStorage.setItem("myLeads", JSON.stringify(myLeads))
-    renderLeads()
-    console.log(localStorage.getItem("myLeads"))
+    renderLeads(myLeads)
 })
 
-function renderLeads() {
+function renderLeads(leads) {
     let listItems = "" // create varible to store all the list items
     for (link in myLeads) {
         // add each myLead element with its html tags to listItems
         //listItems += '<li><a href="' + myLeads[link] + '" target="_blank">' + myLeads[link] + '</a> </li>'
         listItems += `
             <li>
-                <a href="${myLeads[link]}" target="_blank">${myLeads[link]}
+                <a href="${leads[link]}" target="_blank">${leads[link]}
                 </a> 
             </li>
             `
