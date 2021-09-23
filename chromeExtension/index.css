@@ -21,7 +21,12 @@ button {
     font-weight: bold;
     padding: 10px 20px; /*top and bottom = 10px, left and right = 20px*/
     font-size: 20;
-    border: none;
+    border: 1px solid #5f9341;
+}
+
+#delete-btn {
+    background-color: white;
+    color: #5f9341;
 }
 
 ul {
