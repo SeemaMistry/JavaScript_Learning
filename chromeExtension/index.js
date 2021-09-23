@@ -2,14 +2,21 @@ let myLeads = []
 const inputBtn = document.getElementById("input-btn")
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
+const deleteBtn = document.getElementById("delete-btn")
 
 // get the leads from localStorage, store it in a variable and log out the variable
-let leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
-
+const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
 if (leadsFromLocalStorage) {
     myLeads = leadsFromLocalStorage // set myLeads to localStorage key myLeads
     renderLeads() // render out local storage and presist through refreshing page
 }
+
+// on double click, clear localStorage, myLeads array and DOM
+deleteBtn.addEventListener("dblclick", function() {
+    localStorage.clear()
+    myLeads = []
+    renderLeads()
+})
 
 inputBtn.addEventListener("click", function () {
     myLeads.push(inputEl.value) // .value allows js to read html input-elements
