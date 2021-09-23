@@ -3,6 +3,8 @@ const inputBtn = document.getElementById("input-btn")
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
 const deleteBtn = document.getElementById("delete-btn")
+const saveBtn = document.getElementById("save-btn")
+
 
 // get the leads from localStorage, store it in a variable and log out the variable
 const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads")) // returns value (parsed into JS code) stored in key="myLeads"
@@ -10,6 +12,19 @@ if (leadsFromLocalStorage) {
     myLeads = leadsFromLocalStorage // set myLeads array to equal localStorage key myLeads
     renderLeads(myLeads) // render out local storage and presist through refreshing page
 }
+
+// on clicks of saveBtn, log out something
+const tabs = [
+    {url: "https://www.youtube.com/watch?v=-xEb6Py3aKM&list=OLAK5uy_kcK1g6Y0a98HGVtmxVLK4uSF-jJId2wE8&index=24"}
+]
+saveBtn.addEventListener("click", function () {
+    myLeads.push(tabs[0].url) // save link to myLeads
+    inputEl.value = "" // clear input bar
+    localStorage.setItem("myLeads", JSON.stringify(myLeads))
+    renderLeads(myLeads)
+
+})
+
 
 // on double click, clear localStorage, myLeads array and DOM
 deleteBtn.addEventListener("dblclick", function() {
