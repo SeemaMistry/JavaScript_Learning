@@ -3,26 +3,29 @@ const inputBtn = document.getElementById("input-btn")
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
 
+// get the leads from localStorage, store it in a variable and log out the variable
+let leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
+console.log(leadsFromLocalStorage)
 
 inputBtn.addEventListener("click", function () {
     myLeads.push(inputEl.value) // .value allows js to read html input-elements
     inputEl.value = "" // clear the input-el bar when you click save button
+    localStorage.setItem("myLeads", JSON.stringify(myLeads))
     renderLeads()
+    console.log(localStorage.getItem("myLeads"))
 })
 
 function renderLeads() {
     let listItems = "" // create varible to store all the list items
-
     for (link in myLeads) {
         // add each myLead element with its html tags to listItems
         //listItems += '<li><a href="' + myLeads[link] + '" target="_blank">' + myLeads[link] + '</a> </li>'
         listItems += `
-        <li>
-            <a href="${myLeads[link]}" target="_blank">${myLeads[link]}
-            </a> 
-        </li>
-        `
-
+            <li>
+                <a href="${myLeads[link]}" target="_blank">${myLeads[link]}
+                </a> 
+            </li>
+            `
     }
     ulEl.innerHTML = listItems // Call DOM manipulation on listItems
 }
