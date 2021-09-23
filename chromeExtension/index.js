@@ -13,16 +13,14 @@ if (leadsFromLocalStorage) {
     renderLeads(myLeads) // render out local storage and presist through refreshing page
 }
 
-// on clicks of saveBtn, log out something
-const tabs = [
-    {url: "https://www.youtube.com/watch?v=-xEb6Py3aKM&list=OLAK5uy_kcK1g6Y0a98HGVtmxVLK4uSF-jJId2wE8&index=24"}
-]
+// on clicks of saveBtn, log out current tab, save it to local storage
 saveBtn.addEventListener("click", function () {
-    myLeads.push(tabs[0].url) // save link to myLeads
-    inputEl.value = "" // clear input bar
-    localStorage.setItem("myLeads", JSON.stringify(myLeads))
-    renderLeads(myLeads)
-
+    // use chrome API to retrieve current tab and save it to localstorage
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        myLeads.push(tabs[0].url) // save link to myLeads
+        localStorage.setItem("myLeads", JSON.stringify(myLeads)) // set myLeads key to myLeads array
+        renderLeads(myLeads)
+    })
 })
 
 
