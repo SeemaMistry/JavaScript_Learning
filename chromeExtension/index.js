@@ -27,7 +27,7 @@ inputBtn.addEventListener("click", function () {
 
 function renderLeads(leads) {
     let listItems = "" // create varible to store all the list items
-    for (link in myLeads) {
+    for (link in leads) {
         // add each myLead element with its html tags to listItems
         //listItems += '<li><a href="' + myLeads[link] + '" target="_blank">' + myLeads[link] + '</a> </li>'
         listItems += `
