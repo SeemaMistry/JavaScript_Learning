@@ -1,0 +1,8 @@
+.grid{
+    display:flex;
+    flex-wrap: wrap;
+    /* currently grid will be 3 by 4 grid. each image being 100px by 100px */
+    height: 300px; 
+    width: 400px;
+    
+}
