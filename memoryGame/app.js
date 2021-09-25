@@ -1,5 +1,6 @@
 /* Errors to fix!!!!
 ~~~ double click same image and it reads as a match
+~~~ alert is kind of annoying so change it to a <p> message at bottom of page
 */
 
 
@@ -82,6 +83,7 @@ function createBoard() {
 // check for match
 let score = 0
 let scoreEl = document.querySelector("#result")
+let messageEl = document.getElementById("message-el")
 
 function checkForMatch() {
     // get the whole deck as non-live nodes
@@ -93,20 +95,24 @@ function checkForMatch() {
     // check if 2 cards in choosenCards array have same name
     if (choosenCard[0] === choosenCard[1]) {
         // increment score and change img-element into blank img
-        alert("It's a match!")
+        messageEl.textContent = "It's a match!"
         score += 1
         scoreEl.textContent = score
         deck[card0Id].setAttribute("src", "images/white.png")
         deck[card1Id].setAttribute("src", "images/white.png")
     } else {
         // reflip cards back 
-        alert("No match, try again")
+        messageEl.textContent = "No match, try again"
         deck[card0Id].setAttribute("src", "images/pattern.png")
         deck[card1Id].setAttribute("src", "images/pattern.png")
     }
     // clear the 2 arrays
     choosenCard = []
     choosenCardIds = []
+    // congradulations message for winning whole game
+    if (score === cardArray.length/2) {
+        messageEl.textContent = "Congradulations! You won the game"
+    }
 }
 
 // create empty array of the cards choosen
