@@ -1,3 +1,8 @@
+/* Errors to fix!!!!
+~~~ double click same image and it reads as a match
+*/
+
+
 // card options. Make 2 of each card
 const cardArray = [
 // burger
@@ -75,14 +80,29 @@ function createBoard() {
 }
 
 // check for match
+let score = 0
+let scoreEl = document.querySelector("#result")
+
 function checkForMatch() {
+    // get all the cards choosen
+    let deck = document.querySelectorAll("img") // get all 12 images
+    // get the 2 cards choosen ids and store it 
+    const card0Id = choosenCardIds[0]
+    const card1Id = choosenCardIds[1]
+
     // check if 2 cards in choosenCards array have same name
     if (choosenCard[0] === choosenCard[1]) {
         // increment score and change img-element into blank img
         console.log ("its a match")
+        score += 1
+        scoreEl.textContent = score
+        deck[card0Id].setAttribute("src", "images/white.png")
+        deck[card1Id].setAttribute("src", "images/white.png")
     } else {
         // reflip cards back 
         console.log("No match, try again")
+        deck[card0Id].setAttribute("src", "images/pattern.png")
+        deck[card1Id].setAttribute("src", "images/pattern.png")
     }
     // clear the 2 arrays
     choosenCard = []
