@@ -76,7 +76,17 @@ function createBoard() {
 
 // check for match
 function checkForMatch() {
-
+    // check if 2 cards in choosenCards array have same name
+    if (choosenCard[0] === choosenCard[1]) {
+        // increment score and change img-element into blank img
+        console.log ("its a match")
+    } else {
+        // reflip cards back 
+        console.log("No match, try again")
+    }
+    // clear the 2 arrays
+    choosenCard = []
+    choosenCardIds = []
 }
 
 // create empty array of the cards choosen
