@@ -80,6 +80,24 @@ function createBoard() {
     }
 }
 
+// shuffle the deck around
+function shuffle(arr) {
+    let currentIndex = arr.length, randomIndex
+
+    // loop through all cards in array
+    while (currentIndex !=0) {
+        // pick a random card from the deck
+        randomIndex = Math.floor(Math.random() * currentIndex)
+        currentIndex--
+
+        // swap random card with the current card
+        [arr[currentIndex], arr[randomIndex]] = [arr[randomIndex], arr[currentIndex]]
+    }
+    return arr
+}
+
+shuffle(cardArray)
+
 // check for match
 let score = 0
 let scoreEl = document.querySelector("#result")
@@ -100,11 +118,16 @@ function checkForMatch() {
         scoreEl.textContent = score
         deck[card0Id].setAttribute("src", "images/white.png")
         deck[card1Id].setAttribute("src", "images/white.png")
+        // // remove event listener
+        // deck[card0Id].removeEventListener("click", flipCard)
+        // deck[card1Id].removeEventListener("click", flipCard)
     } else {
         // reflip cards back 
         messageEl.textContent = "No match, try again"
         deck[card0Id].setAttribute("src", "images/pattern.png")
         deck[card1Id].setAttribute("src", "images/pattern.png")
+        deck[card0Id].addEventListener("click", flipCard)
+        deck[card1Id].addEventListener("click", flipCard)
     }
     // clear the 2 arrays
     choosenCard = []
@@ -125,8 +148,10 @@ function flipCard() {
     // get card id (i.e. its location) and push it into the choosenCard array based on its name
     // push choosen card id into array
     let cardId = this.getAttribute("data-id")
+    let deck = document.querySelectorAll("img")
     choosenCard.push(cardArray[cardId].name)
     choosenCardIds.push(cardId)
+    deck[cardId].removeEventListener("click",flipCard)
     // render card image to screen via changing img element src to cardArray[id].img
     this.setAttribute("src", cardArray[cardId].img) 
     // once 2 cards are selected, call function checkForMatch, set a timer
