@@ -4,16 +4,23 @@
         <meta charset="UTF-8">
         <title>Memory Game</title>
         <link rel="stylesheet" href="index.css">
-        <script src="app.js" charset="utf-8"></script>
+
     </head>
     <body>
+
         <!-- Where the score will be rendered -->
-        <h3>Score:<span id="result"></span></h3>
+        <h3>Score: <span id="result"></span></h3>
 
         <!-- Where the game's grid will be rendered -->
         <div class="grid">
-            
         </div>
+
+        <!-- null error unless you put script tag last:
+        If you put this script tag in the head, .js file loads before rest of html is read.
+        So when you make calls in .js file back to html (e.g. when you call a class named "grid"),
+        it does not exist in the .js file because the rest of your html hasnt loaded yet.
+        -->
+        <script src="app.js" charset="utf-8"></script> 
 
     </body>
 </html>
