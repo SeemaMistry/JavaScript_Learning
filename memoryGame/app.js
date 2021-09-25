@@ -68,10 +68,36 @@ function createBoard() {
         var card = document.createElement('img') 
         card.setAttribute("src", "images/pattern.png") 
         card.setAttribute("data-id", i) 
-        // card.addEventListener("click", flipCard)
-        grid.appendChild(card) // all the cards are img elements with ids, appendchild adds them to the .grid class in the html file
+        card.addEventListener("click", flipCard)
+        grid.appendChild(card) 
 
     }
+}
+
+// check for match
+function checkForMatch() {
+
+}
+
+// create empty array of the cards choosen
+let choosenCard = []
+// create empty array of choosenCardIds
+let choosenCardIds = []
+
+// flip card
+function flipCard() {
+    // get card id (i.e. its location) and push it into the choosenCard array based on its name
+    // push choosen card id into array
+    let cardId = this.getAttribute("data-id")
+    choosenCard.push(cardArray[cardId].name)
+    choosenCardIds.push(cardId)
+    // render card image to screen via changing img element src to cardArray[id].img
+    this.setAttribute("src", cardArray[cardId].img) 
+    // once 2 cards are selected, call function checkForMatch, set a timer
+    if (choosenCard.length === 2) {
+        setTimeout(checkForMatch, 500)
+    }
+
 }
 
 createBoard()
