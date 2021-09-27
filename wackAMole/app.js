@@ -8,8 +8,9 @@ for (let i = 1; i < 10; i++) {
     // html div class
     divContainers += `
     <div class=square id=${i}>
+    <p>Div Container ${i}</p>
     </div>
     `
 }
-grid.innerHTML = divContainers
+grid.innerHTML += divContainers
 // call the DOM .innerHtml
