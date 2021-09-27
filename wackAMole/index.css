@@ -1,6 +1,23 @@
 .square {
+    /* 200px by 200px squares */
     width: 200px;
     height: 200px;
     border-style: solid;
     border-color: black;
+}
+
+.grid {
+    /* Display .squares into a 3x3 grid shape */
+    display: flex; /* Boxese displayed next to each other */
+    flex-flow: row wrap; /* wrap boxes around page width */
+    justify-content: center; /* centre the grid */
+    align-content: center;
+    /* Make a 3*200px by 3*200px height and width, with extra space on the side */
+    width: 618px; 
+    height: 618px;
+    
+
+
+
+
 }
