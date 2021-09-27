@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", () => {
+
 // get the grid class div and add in 9 html divs, ids 1-9 and class=square
 const grid = document.querySelector(".grid")
 
@@ -8,9 +10,8 @@ for (let i = 1; i < 10; i++) {
     // html div class
     divContainers += `
     <div class=square id=${i}>
-    <p>Div Container ${i}</p>
     </div>
     `
 }
 grid.innerHTML += divContainers
-// call the DOM .innerHtml
+})
