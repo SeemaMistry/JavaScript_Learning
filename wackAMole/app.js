@@ -9,9 +9,15 @@ let divContainers = ""
 for (let i = 1; i < 10; i++) {
     // html div class
     divContainers += `
-    <div class=square id=${i}>
+    <div class="square" id="${i}">
     </div>
     `
 }
 grid.innerHTML += divContainers
+
+// add additional class name to div element in Javascript
+const divEl = document.getElementById("1")
+divEl.classList.add("mole")
+
 })
+

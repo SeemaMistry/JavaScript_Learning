@@ -15,9 +15,11 @@
     /* Make a 3*200px by 3*200px height and width, with extra space on the side */
     width: 618px; 
     height: 618px;
-    
+}
 
-
-
+.mole {
+    /* Add the mole image */
+    background-image: url("mole.png");
+    background-size: cover;
 
 }
