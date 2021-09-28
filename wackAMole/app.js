@@ -55,6 +55,14 @@ square.forEach(id => {
     })
 })
 
+// move the mole automatically for the game
+function moveMole() {
+    let timerEl = null
+    // call randomSquare() every 1 second
+    timerEl = setInterval(randomSquare, 1000)
+}
+
+moveMole()
 
 
 })
