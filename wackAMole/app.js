@@ -81,6 +81,7 @@ function countDown() {
             render()
             console.log("You selected to play another game")
         } else {
+            exit()
             console.log("You dont want to play another game")
         }
     }
@@ -92,12 +93,15 @@ timerEl = setInterval(countDown, 1000)
 // reset the game attributes to start a new game
 function render() {
     // reset the score, timer
-    timerEl.textContent = 6
+    timerEl.textContent = 61
     currentTime = timerEl.textContent
     scoreEl.textContent = 0
     result = 0
 }
 
+function exit() {
+    timerEl = clearTimeout(countDown)
+}
 
 
 })
