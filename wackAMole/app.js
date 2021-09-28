@@ -38,7 +38,7 @@ function randomSquare() {
     })
 
     // get a square from the grid using random number
-    let randomPosition =  square(Math.floor(Math.random() * 9))
+    let randomPosition =  square[(Math.floor(Math.random() * 9))]
     // add the mole class to the randomly selected square
     randomPosition.classList.add("mole")
 
