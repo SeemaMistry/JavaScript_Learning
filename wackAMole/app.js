@@ -13,11 +13,42 @@ for (let i = 1; i < 10; i++) {
     </div>
     `
 }
+// render out DOM to grid class
 grid.innerHTML += divContainers
 
-// add additional class name to div element in Javascript
-const divEl = document.getElementById("1")
-divEl.classList.add("mole")
+// // add additional class name to div element in Javascript
+// const divEl = document.getElementById("6")
+// divEl.classList.add("mole")
+
+// select all html attributes 
+const square = document.querySelectorAll(".square")
+const mole = document.querySelectorAll(".mole")
+const timerEl = document.querySelector("#timer-el")
+let scoreEl = document.querySelector("#score-el")
+
+
+let result = 0
+
+// randomly select a square from the grid
+
+function randomSquare() {
+    // remove the mole class from any existing square
+    square.forEach(className => {
+        className.classList.remove("mole")
+    })
+
+    // get a square from the grid using random number
+    let randomPosition =  square(Math.floor(Math.random() * 9))
+    // add the mole class to the randomly selected square
+    randomPosition.classList.add("mole")
+
+    // assign the id of the randomPosition to the hitPosition
+    hitPosition = randomPosition.id
+}
+
+
+
+
 
 })
 
