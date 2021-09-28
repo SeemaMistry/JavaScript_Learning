@@ -76,11 +76,27 @@ function countDown() {
     if (currentTime === 0) {
         clearInterval(timerEl)
         alert("GAME OVER! Your final score is " + result)
+        // alert("Would you like to play another round?")
+        if (confirm("Would you like to play another round?")) {
+            render()
+            console.log("You selected to play another game")
+        } else {
+            console.log("You dont want to play another game")
+        }
     }
 }
 
 // // call the countDown function every one second
 timerEl = setInterval(countDown, 1000)
+
+// reset the game attributes to start a new game
+function render() {
+    // reset the score, timer
+    timerEl.textContent = 6
+    currentTime = timerEl.textContent
+    result = 0
+}
+
 
 
 })
