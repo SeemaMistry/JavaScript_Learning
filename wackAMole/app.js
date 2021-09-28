@@ -94,6 +94,7 @@ function render() {
     // reset the score, timer
     timerEl.textContent = 6
     currentTime = timerEl.textContent
+    scoreEl.textContent = 0
     result = 0
 }
 
