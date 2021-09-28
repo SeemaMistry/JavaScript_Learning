@@ -28,6 +28,7 @@ let scoreEl = document.querySelector("#score-el")
 
 
 let result = 0
+let currentTime = timerEl.textContent
 
 // randomly select a square from the grid
 
@@ -46,6 +47,7 @@ function randomSquare() {
     hitPosition = randomPosition.id
 }
 
+// add a point if you get the mole
 square.forEach(id => {
     id.addEventListener("mouseup", () => {
         if(id.id === hitPosition) {
@@ -63,6 +65,22 @@ function moveMole() {
 }
 
 moveMole()
+
+// countdown function
+function countDown() {
+    // decremement timer ny 1 second 
+    currentTime--
+    timerEl.textContent = currentTime
+
+    // end of game 
+    if (currentTime === 0) {
+        clearInterval(timerEl)
+        alert("GAME OVER! Your final score is " + result)
+    }
+}
+
+// // call the countDown function every one second
+timerEl = setInterval(countDown, 1000)
 
 
 })
