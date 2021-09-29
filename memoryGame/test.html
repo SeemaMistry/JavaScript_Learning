@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Memory Game 2</title>
+        <link rel="stylesheet" href="test.css">
+
+    </head>
+    <body>
+
+        <!-- Where the score will be rendered -->
+        <h1>This is a test game</h1>
+        <h3>Score: <span id="result"></span></h3>
+
+        <!-- Where the game's grid will be rendered -->
+        <div class="grid">
+        </div>
+        <p id="message-el"></p>
+
+        <!-- null error unless you put script tag last:
+        If you put this script tag in the head, .js file loads before rest of html is read.
+        So when you make calls in .js file back to html (e.g. when you call a class named "grid"),
+        it does not exist in the .js file because the rest of your html hasnt loaded yet.
+        -->
+        <script src="test.js" charset="utf-8"></script> 
+        <script data-main="test" src="require.js"></script>
+
+    </body>
+</html>

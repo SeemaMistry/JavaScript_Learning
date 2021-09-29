@@ -5,6 +5,8 @@
 
 
 // card options. Make 2 of each card
+
+
 const cardArray = [
 // burger
     {
@@ -61,6 +63,7 @@ const cardArray = [
         img: "images/pizzaSlice.png"
     }
 ]
+
 
 // create the game board
 const grid = document.querySelector(".grid")
@@ -129,7 +132,7 @@ function checkForMatch() {
         deck[card0Id].addEventListener("click", flipCard)
         deck[card1Id].addEventListener("click", flipCard)
     }
-    // clear the 2 arrays
+    // clear the 2 arrays 
     choosenCard = []
     choosenCardIds = []
     // congradulations message for winning whole game
