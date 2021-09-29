@@ -11,5 +11,12 @@ for (let i = 1; i < 50; i++) {
         gridSquares += `<div class="taken"></div>`
     }
 }
-grid.innerHTML += gridSquares
+grid.innerHTML += gridSquares 
+
+// get attributes
+const squares = document.querySelectorAll(".grid div")
+const scoreEl = document.querySelector("#score-el")
+const playerEl = document.getElementById("player-el")
+
+
 
