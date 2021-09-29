@@ -5,10 +5,10 @@ let gridSquares = ""
 for (let i = 1; i < 50; i++) {
     if (i < 43) {
         // make empty div
-        gridSquares += `<div><p>I am empty div ${i}</p></div>`
+        gridSquares += `<div></div>`
     } else {
         // make div with class name taken
-        gridSquares += `<div class="taken"><p>I am taken div ${i}</p></div>`
+        gridSquares += `<div class="taken"></div>`
     }
 }
 grid.innerHTML += gridSquares
