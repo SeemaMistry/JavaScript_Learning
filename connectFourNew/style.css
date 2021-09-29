@@ -1,0 +1,19 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    width: 100%;
+    background: white;
+}
+
+h1 {
+    text-transform: capitalize;
+}
+
+button {
+    background-color:royalblue;
+    color: white;
+    font-weight: bold;
+}
