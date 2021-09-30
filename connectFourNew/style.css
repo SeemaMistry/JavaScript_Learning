@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
 body {
     font-family: sans-serif;
     display: flex;
@@ -21,6 +27,7 @@ body {
     align-items: center;
     background: #4370F1;
     height: 100px;
+    display: flex;
     width: 100px;
     justify-content: center;
 
