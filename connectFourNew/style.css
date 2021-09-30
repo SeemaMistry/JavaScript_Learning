@@ -25,6 +25,13 @@ body {
 
 }
 
+.left-border {
+    background: green;
+}
+.right-border {
+    background: crimson;
+}
+
 button {
     background-color:royalblue;
     color: white;
