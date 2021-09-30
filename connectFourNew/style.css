@@ -32,7 +32,7 @@ body {
     justify-content: center;
 }
 
-/* Make small circles inside all the cells */
+/* Make a small circle inside each of the cells */
 .cell::after {
     background: white;
     border-radius: 50%;
@@ -85,8 +85,31 @@ body {
   }
 
 
-button {
-    background-color:royalblue;
-    color: white;
-    font-weight: bold;
+
+/* Style the footer: reset button and status */
+.footer {
+    align-items:center;
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
 }
+
+#reset-btn {
+    background-color: #4370F1;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px 30px;
+    text-transform: uppercase;
+}
+
+
+#status-el {
+    display: flex;
+    font-size: 20px;
+}
+
