@@ -82,6 +82,33 @@ body {
     border-radius: 0 0 0 10px;
   }
 
+/* Adding red and yellow */
+
+.cell.row-top.red::after {
+    background: red;
+    border: 3px solid black;
+  }
+  
+  .cell.row-top.yellow::after {
+    background: yellow;
+    border: 3px solid black;
+  }
+.cell:not(.row-top).red::after {
+    background: red;
+  }
+  .cell:not(.row-top).yellow::after {
+    background: yellow;
+  }
+  
+.cell:not(.row-top).red.win {
+    background: red;
+  }
+  
+  .cell:not(.row-top).yellow.win {
+    background: yellow;
+  }
+
+ 
 
 
 /* Style the footer: reset button and status */
