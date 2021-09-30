@@ -27,11 +27,9 @@ body {
     align-items: center;
     background: #4370F1;
     height: 100px;
-    display: flex;
+    display: flex; /* Display flex lets circles show on screen properly */
     width: 100px;
     justify-content: center;
-
-    border: 1px solid black;
 }
 
 /* Make small circles inside all the cells */
@@ -53,12 +51,39 @@ body {
     border: none;
   }
 
+  /* Give the edges a black border */
 .left-border {
     background: green;
+    border-left: 3px solid black;
 }
 .right-border {
     background: crimson;
+    border-right: 3px solid black;
 }
+.top-border {
+    border-top: 3px solid black;
+}
+.bottom-border {
+    border-bottom: 3px solid black;
+}
+
+/* Round out the corner edges */
+.left-border.top-border {
+    border-radius: 10px 0 0 0;
+  }
+  
+  .right-border.top-border {
+    border-radius: 0 10px 0 0;
+  }
+  
+  .right-border.bottom-border {
+    border-radius: 0 0 10px 0;
+  }
+  
+  .left-border.bottom-border {
+    border-radius: 0 0 0 10px;
+  }
+
 
 button {
     background-color:royalblue;
