@@ -37,8 +37,7 @@ for (i = 1; i < 7; i++) {
 
 // store the cells and rows in arrays
 const allCells = document.querySelectorAll(".cell:not(.row-top") // grab all cells except top row
-const allCellsCols = allCells
-const allCellsRows = allCells
+
 const topCells = document.querySelectorAll(".cell.row-top") // grab all top row
 
 // columns 0 starts at bottom-right 
@@ -59,8 +58,7 @@ const row3 = []
 const row4 = []
 const row5 = []
 const rows = [row0,row1,row2,row3,row4,row5,rowtop]
-let temp = [1,2,3]
-const fruits = ["1", "2", "3", "4","5", "6", "7", "8"]
+
 
 function sortCellsIntoCols (arrDataToSort, arrEmpty, maxColumns) {
     let max = maxColumns
@@ -98,10 +96,10 @@ function sortCellsIntoRows (arrDataToSort, arrEmpty, maxRows) {
 }
 
 
-sortCellsIntoCols(allCellsCols,columns,6)
-// console.log(allCellsCols)
-sortCellsIntoRows(topCells,rows,6)
-sortCellsIntoRows(allCellsRows,rows,6)
+sortCellsIntoCols(allCells,columns,6) // sort allCells into columns[]
+sortCellsIntoCols(topCells,columns,6) // sort topCells into columns[]
+sortCellsIntoRows(topCells,rows,6) // sort topCells into rows[6] = toprow[]
+sortCellsIntoRows(allCells,rows,6) // sort allCells into rows[]
 
 
 console.log(columns)
