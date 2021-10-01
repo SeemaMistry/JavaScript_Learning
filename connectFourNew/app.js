@@ -195,13 +195,9 @@ const addFirstOpenCellForColumn = (colIndex) => {
     Purpose: Take a cell object and determine what colour class it has in its class list. Return colour class name
 */
 const getCellColour = (cell) => {
-    if (cell.classList.contains("yellow")) {
-        return "yellow"
-    } else if (cell.classList.contains("red")) {
-        return "red"
-    } else {
-        return null
-    }
+    if (cell.classList.contains("yellow"))  return "yellow"
+    else if (cell.classList.contains("red")) return "red"
+    else return null
 }
 
 /* checkForWinner(object) -> Boolean 
@@ -213,7 +209,6 @@ const getCellColour = (cell) => {
 */
 const checkStatusofGame = (takenCell) => {
     const colour = getCellColour(takenCell) // get colour of cell
-    
 
 }
 
