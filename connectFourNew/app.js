@@ -130,7 +130,7 @@ const removeTopCellColour = (colIndex) => {
     topCell.classList.remove(yellowIsNext ? "yellow" : "red") // colour yellow/red topmost cell
 }
 
-const getFirstOpenCellForColumn = (colIndex) => { 
+const addFirstOpenCellForColumn = (colIndex) => { 
     let count = 0
     // find first empty cell in that column and add coloured chip to classList
     for (const col of columns[colIndex]) {
@@ -143,6 +143,7 @@ const getFirstOpenCellForColumn = (colIndex) => {
             col.classList.add(yellowIsNext? "yellow" : "red")
             removeTopCellColour(colIndex)
             yellowIsNext = !yellowIsNext
+            topCells[colIndex].classList.add(yellowIsNext ? "yellow" : "red")
             break // break out of for loop
         }
         
@@ -168,7 +169,11 @@ const handleCellClick = (e) => {
     // get div info and extract column index
     const cell = e.target 
     const [rowIndex, colIndex] = getCellLocation(cell)
-    getFirstOpenCellForColumn(colIndex)
+    addFirstOpenCellForColumn(colIndex)
+    // get first open cell
+    // add colour to that cell
+    // switch top cell colour to red
+    // switch yellowIsNext value
    
 }
 
