@@ -97,17 +97,16 @@ function sortCellsIntoRows (arrDataToSort, arrEmpty, maxRows) {
     
 }
 
-
 sortCellsIntoCols(allCells,columns,6) // sort allCells into columns[]
 sortCellsIntoCols(topCells,columns,6) // sort topCells into columns[]
 sortCellsIntoRows(topCells,rows,6) // sort topCells into rows[6] = toprow[]
 sortCellsIntoRows(allCells,rows,6) // sort allCells into rows[]
 
-// variables
+// VARIABLES
 let gameIsLive = true
 let yellowIsNext = true
 
-// functions 
+// UTILITY FUNCTIONS
 const getClassListArray = (cell) => {
     // return array of class list
     const classList = cell.classList
@@ -124,43 +123,58 @@ const getCellLocation = (cell) => {
     return [parseInt(rowIndex, 10), parseInt(colIndex, 10)]
 }
 
-
-// this is not working 
-const colourTopCellOnHover = (e) => {
-    cell = e.target
-    if (yellowIsNext === true) {
-        cell.classList.add("yellow")
-    } else {
-        cell.classList.add("red")
-    }
-
+const removeTopCellColour = (cell) => {
+    const [rowIndex, colIndex] = getCellLocation(cell) // get cell coordinates
+    const topCell = columns[colIndex][6]
+    // remove yellow/red class from the cell
+    topCell.classList.remove(yellowIsNext ? "yellow" : "red") // colour yellow/red topmost cell
 }
 
-// event handlers
+
+// HANDLING EVENT CALLS
 const handleCellMouseOver = (e) => {
     const cell = e.target // get div attributes of cell
     const [rowIndex, colIndex] = getCellLocation(cell) // get cell coordinates
     // use col to get col-top
     const topCell = columns[colIndex][6]
-    console.log(topCell)
     topCell.classList.add(yellowIsNext ? "yellow" : "red") // colour yellow/red topmost cell
 }
 
 const handleCellMouseOut = (e) => {
     const cell = e.target // get div attributes of cell
-    const [rowIndex, colIndex] = getCellLocation(cell) // get cell coordinates
-    const topCell = columns[colIndex][6]
-    // remove yellow/red class from the cell
-    topCell.classList.remove(yellowIsNext? "yellow" : "red")
+    removeTopCellColour(cell)
 }
 
-// adding event listeners 
+const handleClick = (e) => {
+    // get div info and extract column index
+    const cell = e.target 
+    const [rowIndex, colIndex] = getCellLocation(cell)
+    // find first empty cell in that column and add coloured chip to classList
+    for (const col of columns[colIndex]) {
+        if (col.classList.contains("yellow") ||  cell.classList.contains("red")) {
+            continue
+        } else {
+            // add yellow/red and change yellowIsNext to opposite
+            col.classList.add(yellowIsNext? "yellow" : "red")
+            removeTopCellColour(col)
+            yellowIsNext = !yellowIsNext
+            break
+        }
+        
+    }
+}
+
+// CALLING EVENT LISTENERS
 
 // get access to each cell using rows
 for (const row of rows) {
     for (const cell of row) {
+        // add coloured chip to top-most row of appropriate coloumn when cell is hovered over by adding yellow/red to class list
         cell.addEventListener("mouseover", handleCellMouseOver)
+        // remove yellow/red class from top-most row when cell is not hovered over
         cell.addEventListener("mouseout", handleCellMouseOut)
+        // onclick, add yellow/red chip into slot
+        cell.addEventListener("click", handleClick)
     }
 }
 
