@@ -143,11 +143,8 @@ const handleCellMouseOver = (e) => {
     // use col to get col-top
     const topCell = columns[colIndex][6]
     console.log(topCell)
-    if (yellowIsNext === true) {
-        topCell.classList.add("yellow")
-    } else {
-        topCell.classList.add("red")
-    }
+    topCell.classList.add(yellowIsNext ? "yellow" : "red") // colour yellow/red topmost cell
+
 
  }
 
