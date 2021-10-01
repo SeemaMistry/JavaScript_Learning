@@ -1,5 +1,8 @@
 // make the rows and cells using .innerHTML inside of the grid class
 const gameBoard = document.querySelector(".game-board")
+const resetBtn = document.querySelector("#reset-btn")
+const statusEl = document.querySelector("#status-el")
+
 let squares = ""
 
 // i => row
@@ -62,7 +65,7 @@ const rows = [row0,row1,row2,row3,row4,row5,rowtop]
 
 function sortCellsIntoCols (arrDataToSort, arrEmpty, maxColumns) {
     let max = maxColumns
-    // loop through allCells starting with last index and add one item to each empty array.
+    // loop through arrDataToSort starting with last index and add one item to each empty array in columns.
     // Once all empty arrays have an item, go back to first array and add second item, filling all arrays with another item
     for (let i=(arrDataToSort.length-1); i > -1; i--) {
         // use maxColumns to determin which array to store into
@@ -75,14 +78,13 @@ function sortCellsIntoCols (arrDataToSort, arrEmpty, maxColumns) {
 }
 
 function sortCellsIntoRows (arrDataToSort, arrEmpty, maxRows) {
-    // loop through allCells starting with last index
     let index = 0
     let count = 0
     if (arrDataToSort.length === 7) {
         // adding to a specific rows[index], rowtop which is the last array in rows[] that uses a seperate arrDataToSort value
         index = maxRows
     }
-    // add first 6 items to an empty array, then move to next empty array
+    // add first 6 items to an empty array, then move to next empty array and add next 6 items
     for (let i=0; i < arrDataToSort.length; i++) {
         // use arrNum to determin which array to store into
         arrEmpty[index].push(arrDataToSort[i]) 
@@ -101,7 +103,39 @@ sortCellsIntoCols(topCells,columns,6) // sort topCells into columns[]
 sortCellsIntoRows(topCells,rows,6) // sort topCells into rows[6] = toprow[]
 sortCellsIntoRows(allCells,rows,6) // sort allCells into rows[]
 
+// variables
+let gameIsLive = true
+let yellowIsNext = true
 
-console.log(columns)
-console.log(rows)
+// functions 
+const getClassListArray = (cell) => {
+    // return array of class list
+    const classList = cell.classList
+    return [...classList]
+}
+
+const getCellLocation = (cell) => {
+    const classList = getClassListArray(cell) // get cell classList
+    const rowClass = classList.find(className => className.includes("row")) // row-Num
+    const colClass = classList.find(className => className.includes("col")) // col-Num
+    const rowIndex = rowClass[4] // row-4 -> 4
+    const colIndex = colClass[4] // col-6 -> 6
+    // return cell coordinates (as integers) in an array [row, col]
+    return [parseInt(rowIndex), parseInt(colIndex)]
+}
+
+// event handlers
+const handleCellMouseOver = (e) => {
+    const cell = e.target // get div attributes of cell
+    console.log(getCellLocation(cell))
+ }
+
+// adding event listeners 
+
+// get access to each cell using rows
+for (const row of rows) {
+    for (const cell of row) {
+        cell.addEventListener("mouseover", handleCellMouseOver)
+    }
+}
 
