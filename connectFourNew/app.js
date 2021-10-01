@@ -5,6 +5,7 @@ const statusEl = document.querySelector("#status-el")
 
 let squares = ""
 
+// Make 49 divs inside the game-board div to make game board. Add appropriate classList as needed
 // i => row
 // k => columns 
 for (let i = 0; i < 7; i++) {
@@ -29,7 +30,7 @@ for (let i = 0; i < 7; i++) {
 }
 gameBoard.innerHTML += squares
 
-// add left and right boarders  elements
+// add left and right border elements to all of column 0 and column 6
 const leftBorder = document.getElementsByClassName("col-0")
 const rightBorder = document.getElementsByClassName("col-6")
 
@@ -40,11 +41,10 @@ for (i = 1; i < 7; i++) {
 
 // store the cells and rows in arrays
 const allCells = document.querySelectorAll(".cell:not(.row-top") // grab all cells except top row
-
 const topCells = document.querySelectorAll(".cell.row-top") // grab all top row
 
-// columns 0 starts at bottom-right 
-const column0 = []
+// store columns and rows into arrays
+const column0 = [] // starts at bottom left corner as index 0, counting up
 const column1 = []
 const column2 = []
 const column3 = []
@@ -54,7 +54,7 @@ const column6 = []
 const columns = [column0,column1,column2,column3,column4,column5,column6]
 
 const rowtop = []
-const row0 = []
+const row0 = [] // starts at top left counting to the right
 const row1 = []
 const row2 = [] 
 const row3 = []
@@ -62,21 +62,38 @@ const row4 = []
 const row5 = []
 const rows = [row0,row1,row2,row3,row4,row5,rowtop]
 
-
-function sortCellsIntoCols (arrDataToSort, arrEmpty, maxColumns) {
-    let max = maxColumns
+/* sortCellsIntoCols([] arrDataToSort, [[]] arrEmpty, int maxItems) -> null 
+    Require: [] arrDataToSort = array of data that will be sorted, [[]] arrEmpty = empty array of array data will be sorted into, 
+            int maxItems = how many empty arrays you are sorting into
+                maxItems => arrEmpty.length - 1
+    Purpose: Sort data from arrayDataToSort into the empty arrays, adding a max of maxItems items to each empty array.
+                Sort data from back to front. Add one item to each empty array before adding next item to first array
+                Example: data = [1,2,3,4,5,6,7,8], empty = [ [], [], [] ], maxItems = 2
+                ----> empty = [ [6,3], [7,4,1], [8,5,2] ]
+*/
+function sortCellsIntoCols (arrDataToSort, arrEmpty, maxItems) {
+    let max = maxItems
     // loop through arrDataToSort starting with last index and add one item to each empty array in columns.
     // Once all empty arrays have an item, go back to first array and add second item, filling all arrays with another item
     for (let i=(arrDataToSort.length-1); i > -1; i--) {
-        // use maxColumns to determin which array to store into
-        arrEmpty[maxColumns].push(arrDataToSort[i]) 
-        maxColumns--
-        if (maxColumns === -1) { 
-            maxColumns = max // after 6 items added, move to next column
+        // use maxItems to determin which array to store into
+        arrEmpty[maxItems].push(arrDataToSort[i]) 
+        maxItems--
+        if (maxItems === -1) { 
+            maxItems = max // after 6 items added, move to next column
         }        
     }
 }
 
+/* sortCellsIntoRows([] arrDataToSort, [[]] arrEmpty, int maxItems) -> null 
+    Require: [] arrDataToSort = array of data that will be sorted, [[]] arrEmpty = empty array of array data will be sorted into, 
+            int maxRows = how many empty arrays you are sorting into
+                maxRows => arrEmpty.length - 1
+    Purpose: Sort data from arrayDataToSort into the empty arrays, adding a max of maxRows+1 items to each empty array.
+                Sort data from front to back. Add maxRows items into first empty array before moving onto next empty array.
+                Example: data = [1,2,3,4,5,6,7,8], empty = [ [], [], [] ], maxItems = 3
+                ----> empty = [ [1,2,3], [4,5,6], [7,8] ]
+*/
 function sortCellsIntoRows (arrDataToSort, arrEmpty, maxRows) {
     let index = 0
     let count = 0
@@ -106,13 +123,21 @@ sortCellsIntoRows(allCells,rows,6) // sort allCells into rows[]
 let gameIsLive = true
 let yellowIsNext = true
 
-// UTILITY FUNCTIONS
+// UTILITY FUNCTIONS 
+/* getClassListArray(object) -> []
+    Require: object = cell object
+    Purpose: Take a cell and extract its classList into an array
+*/
 const getClassListArray = (cell) => {
     // return array of class list
     const classList = cell.classList
     return [...classList]
 }
 
+/* getCellLocation(object) -> [int, int] 
+    Require: object = cell object
+    Purpose: Take a cell and extract it's coordinates into an array of ints, [rowInt, colInt]
+*/
 const getCellLocation = (cell) => {
     const classList = getClassListArray(cell) // get cell classList
     const rowClass = classList.find(className => className.includes("row")) // row-Num
@@ -123,7 +148,10 @@ const getCellLocation = (cell) => {
     return [parseInt(rowIndex, 10), parseInt(colIndex, 10)]
 }
 
-
+/* removeTopCellColour(int) -> null
+    Require: int = column index
+    Purpose: remove colour (yellow or red) from top-most cell
+*/
 const removeTopCellColour = (colIndex) => {
     // find cell's top-most chip and remove its colour
     const topCell = topCells[colIndex]
@@ -132,6 +160,7 @@ const removeTopCellColour = (colIndex) => {
 }
 
 /* addFirstOpenCellForColumn(int) -> cell Object
+    Require: int = column index
     Purpose: find first empty slot in column and do the following:
                 - add colour to cell classList
                 - remove colour from topCell
@@ -161,8 +190,14 @@ const addFirstOpenCellForColumn = (colIndex) => {
     }
 }
 
-/* checkForWinner() -> Boolean */
-const checkForWinner = () => {
+/* checkForWinner(object) -> Boolean 
+    Require: object = cell object 
+    Purpose: Using the lastTaken cell, determine if that player has won.
+                -> return true when player won
+                -> return false when player hasnt won
+
+*/
+const checkForWinner = (takenCell) => {
 
 }
 
