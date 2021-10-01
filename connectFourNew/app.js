@@ -151,7 +151,7 @@ const handleClick = (e) => {
     const [rowIndex, colIndex] = getCellLocation(cell)
     // find first empty cell in that column and add coloured chip to classList
     for (const col of columns[colIndex]) {
-        if (col.classList.contains("yellow") ||  cell.classList.contains("red")) {
+        if (col.classList.contains("yellow") ||  col.classList.contains("red")) {
             continue
         } else {
             // add yellow/red and change yellowIsNext to opposite
