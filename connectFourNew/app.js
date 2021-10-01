@@ -123,6 +123,7 @@ const getCellLocation = (cell) => {
     return [parseInt(rowIndex, 10), parseInt(colIndex, 10)]
 }
 
+
 const removeTopCellColour = (colIndex) => {
     // find cell's top-most chip and remove its colour
     const topCell = topCells[colIndex]
@@ -130,24 +131,39 @@ const removeTopCellColour = (colIndex) => {
     topCell.classList.remove(yellowIsNext ? "yellow" : "red") // colour yellow/red topmost cell
 }
 
+/* addFirstOpenCellForColumn(int) -> cell Object
+    Purpose: find first empty slot in column and do the following:
+                - add colour to cell classList
+                - remove colour from topCell
+                -> return cell
+            If the column if full
+                - give alert pop up
+                -> return null
+*/
 const addFirstOpenCellForColumn = (colIndex) => { 
     let count = 0
     // find first empty cell in that column and add coloured chip to classList
     for (const col of columns[colIndex]) {
         count++
-        if (col.classList.contains("yellow") ||  col.classList.contains("red")) {
-            if (count === columns[colIndex].length-1) {alert("Column is full")}
+        if (col.classList.contains("yellow") || col.classList.contains("red")) {
+            if (count === columns[colIndex].length-1) {
+                alert("Column is full")
+                return null
+            }
             continue // do nothing, go to next cell
         } else {
             // add yellow/red and change yellowIsNext to opposite
             col.classList.add(yellowIsNext? "yellow" : "red")
             removeTopCellColour(colIndex)
-            yellowIsNext = !yellowIsNext
-            topCells[colIndex].classList.add(yellowIsNext ? "yellow" : "red")
-            break // break out of for loop
+            return col
         }
         
     }
+}
+
+/* checkForWinner() -> Boolean */
+const checkForWinner = () => {
+
 }
 
 // HANDLING EVENT CALLS
@@ -169,11 +185,18 @@ const handleCellClick = (e) => {
     // get div info and extract column index
     const cell = e.target 
     const [rowIndex, colIndex] = getCellLocation(cell)
-    addFirstOpenCellForColumn(colIndex)
-    // get first open cell
-    // add colour to that cell
-    // switch top cell colour to red
-    // switch yellowIsNext value
+
+    // get first open cell and add colour to that cell
+    const takenCell = addFirstOpenCellForColumn(colIndex)
+    if (!takenCell) {return} // if return null, then column is full, do nothing 
+
+    // check for winner
+    
+    // change colour of topCell and switch players
+    yellowIsNext = !yellowIsNext
+    topCells[colIndex].classList.add(yellowIsNext ? "yellow" : "red")
+
+    
    
 }
 
