@@ -131,25 +131,7 @@ const removeTopCellColour = (cell) => {
     topCell.classList.remove(yellowIsNext ? "yellow" : "red") // colour yellow/red topmost cell
 }
 
-
-// HANDLING EVENT CALLS
-const handleCellMouseOver = (e) => {
-    const cell = e.target // get div attributes of cell
-    const [rowIndex, colIndex] = getCellLocation(cell) // get cell coordinates
-    // use col to get col-top
-    const topCell = columns[colIndex][6]
-    topCell.classList.add(yellowIsNext ? "yellow" : "red") // colour yellow/red topmost cell
-}
-
-const handleCellMouseOut = (e) => {
-    const cell = e.target // get div attributes of cell
-    removeTopCellColour(cell)
-}
-
-const handleClick = (e) => {
-    // get div info and extract column index
-    const cell = e.target 
-    const [rowIndex, colIndex] = getCellLocation(cell)
+const getFirstOpenCellForColumn = (colIndex) => {
     let count = 0
     // find first empty cell in that column and add coloured chip to classList
     for (const col of columns[colIndex]) {
@@ -168,6 +150,28 @@ const handleClick = (e) => {
     }
 }
 
+// HANDLING EVENT CALLS
+const handleCellMouseOver = (e) => {
+    const cell = e.target // get div attributes of cell
+    const [rowIndex, colIndex] = getCellLocation(cell) // get cell coordinates
+    // use col to get col-top
+    const topCell = columns[colIndex][6]
+    topCell.classList.add(yellowIsNext ? "yellow" : "red") // colour yellow/red topmost cell
+}
+
+const handleCellMouseOut = (e) => {
+    const cell = e.target // get div attributes of cell
+    removeTopCellColour(cell)
+}
+
+const handleCellClick = (e) => {
+    // get div info and extract column index
+    const cell = e.target 
+    const [rowIndex, colIndex] = getCellLocation(cell)
+    getFirstOpenCellForColumn(colIndex)
+   
+}
+
 // CALLING EVENT LISTENERS
 
 // get access to each cell using rows
@@ -178,7 +182,8 @@ for (const row of rows) {
         // remove yellow/red class from top-most row when cell is not hovered over
         cell.addEventListener("mouseout", handleCellMouseOut)
         // onclick, add yellow/red chip into slot
-        cell.addEventListener("click", handleClick)
+        cell.addEventListener("click", handleCellClick)
+
     }
 }
 
