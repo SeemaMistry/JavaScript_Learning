@@ -190,6 +190,20 @@ const addFirstOpenCellForColumn = (colIndex) => {
     }
 }
 
+/* getCellColour(object) -> string
+    Require: object = cell
+    Purpose: Take a cell object and determine what colour class it has in its class list. Return colour class name
+*/
+const getCellColour = (cell) => {
+    if (cell.classList.contains("yellow")) {
+        return "yellow"
+    } else if (cell.classList.contains("red")) {
+        return "red"
+    } else {
+        return null
+    }
+}
+
 /* checkForWinner(object) -> Boolean 
     Require: object = cell object 
     Purpose: Using the lastTaken cell, determine if that player has won.
@@ -197,7 +211,9 @@ const addFirstOpenCellForColumn = (colIndex) => {
                 -> return false when player hasnt won
 
 */
-const checkForWinner = (takenCell) => {
+const checkStatusofGame = (takenCell) => {
+    const colour = getCellColour(takenCell) // get colour of cell
+    
 
 }
 
@@ -226,13 +242,12 @@ const handleCellClick = (e) => {
     if (!takenCell) {return} // if return null, then column is full, do nothing 
 
     // check for winner
+    checkStatusofGame(takenCell)
     
     // change colour of topCell and switch players
     yellowIsNext = !yellowIsNext
     topCells[colIndex].classList.add(yellowIsNext ? "yellow" : "red")
 
-    
-   
 }
 
 // CALLING EVENT LISTENERS
