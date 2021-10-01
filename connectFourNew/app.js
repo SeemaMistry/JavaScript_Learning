@@ -144,9 +144,15 @@ const handleCellMouseOver = (e) => {
     const topCell = columns[colIndex][6]
     console.log(topCell)
     topCell.classList.add(yellowIsNext ? "yellow" : "red") // colour yellow/red topmost cell
+}
 
-
- }
+const handleCellMouseOut = (e) => {
+    const cell = e.target // get div attributes of cell
+    const [rowIndex, colIndex] = getCellLocation(cell) // get cell coordinates
+    const topCell = columns[colIndex][6]
+    // remove yellow/red class from the cell
+    topCell.classList.remove(yellowIsNext? "yellow" : "red")
+}
 
 // adding event listeners 
 
@@ -154,6 +160,7 @@ const handleCellMouseOver = (e) => {
 for (const row of rows) {
     for (const cell of row) {
         cell.addEventListener("mouseover", handleCellMouseOver)
+        cell.addEventListener("mouseout", handleCellMouseOut)
     }
 }
 
