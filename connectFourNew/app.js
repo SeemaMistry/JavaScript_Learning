@@ -124,6 +124,7 @@ const getCellLocation = (cell) => {
 }
 
 const removeTopCellColour = (cell) => {
+    // find cell's top-most chip and remove its colour
     const [rowIndex, colIndex] = getCellLocation(cell) // get cell coordinates
     const topCell = columns[colIndex][6]
     // remove yellow/red class from the cell
@@ -149,16 +150,19 @@ const handleClick = (e) => {
     // get div info and extract column index
     const cell = e.target 
     const [rowIndex, colIndex] = getCellLocation(cell)
+    let count = 0
     // find first empty cell in that column and add coloured chip to classList
     for (const col of columns[colIndex]) {
+        count++
         if (col.classList.contains("yellow") ||  col.classList.contains("red")) {
-            continue
+            if (count === columns[colIndex].length-1) {alert("Column is full")}
+            continue // do nothing, go to next cell
         } else {
             // add yellow/red and change yellowIsNext to opposite
             col.classList.add(yellowIsNext? "yellow" : "red")
             removeTopCellColour(col)
             yellowIsNext = !yellowIsNext
-            break
+            break // break out of for loop
         }
         
     }
