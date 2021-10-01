@@ -121,13 +121,13 @@ const getCellLocation = (cell) => {
     const rowIndex = rowClass[4] // row-4 -> 4
     const colIndex = colClass[4] // col-6 -> 6
     // return cell coordinates (as integers) in an array [row, col]
-    return [parseInt(rowIndex), parseInt(colIndex)]
+    return [parseInt(rowIndex, 10), parseInt(colIndex, 10)]
 }
 
 // event handlers
 const handleCellMouseOver = (e) => {
     const cell = e.target // get div attributes of cell
-    console.log(getCellLocation(cell))
+     console.log(getCellLocation(cell))
  }
 
 // adding event listeners 
