@@ -124,10 +124,31 @@ const getCellLocation = (cell) => {
     return [parseInt(rowIndex, 10), parseInt(colIndex, 10)]
 }
 
+
+// this is not working 
+const colourTopCellOnHover = (e) => {
+    cell = e.target
+    if (yellowIsNext === true) {
+        cell.classList.add("yellow")
+    } else {
+        cell.classList.add("red")
+    }
+
+}
+
 // event handlers
 const handleCellMouseOver = (e) => {
     const cell = e.target // get div attributes of cell
-     console.log(getCellLocation(cell))
+    const [rowIndex, colIndex] = getCellLocation(cell) // get cell coordinates
+    // use col to get col-top
+    const topCell = columns[colIndex][6]
+    console.log(topCell)
+    if (yellowIsNext === true) {
+        topCell.classList.add("yellow")
+    } else {
+        topCell.classList.add("red")
+    }
+
  }
 
 // adding event listeners 
