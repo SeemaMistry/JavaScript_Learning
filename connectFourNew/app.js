@@ -207,9 +207,22 @@ const getCellColour = (cell) => {
                 -> return false when player hasnt won
 
 */
-const checkStatusofGame = (takenCell) => {
-    const colour = getCellColour(takenCell) // get colour of cell
+const checkStatusofGame = (lastTakenCell) => {
+    const colour = getCellColour(lastTakenCell) // get colour of cell
+    if (!colour) return // handle null colour by doing nothing
+    
+    // get attributes: row, column, winnerArray
+    let winner = []
+    const [rowIndex, colIndex] = getCellLocation(lastTakenCell)
+    let row = rows[rowIndex]
+    let column = columns[colIndex].slice(0, columns[colIndex].length - 1)
+    console.log(row)
+    console.log(column)
 
+    // check horizontally ---
+
+
+    // check horizontally 
 }
 
 // HANDLING EVENT CALLS
