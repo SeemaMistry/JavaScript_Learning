@@ -200,6 +200,16 @@ const getCellColour = (cell) => {
     else return null
 }
 
+const addWinClass = (winnerArray) => {
+    if (winnerArray.length < 4) return  // do nothing if array is too small
+    // give each cell in winnerArray class of "win"
+    for (const cell in winnerArray) {
+        winnerArray[cell].classList.add("win")
+    }
+
+}
+
+
 /* checkForWinner(object) -> Boolean 
     Require: object = cell object 
     Purpose: Using the lastTaken cell, determine if that player has won.
@@ -212,14 +222,26 @@ const checkStatusofGame = (lastTakenCell) => {
     if (!colour) return // handle null colour by doing nothing
     
     // get attributes: row, column, winnerArray
-    let winner = []
+    let winner = [lastTakenCell]
     const [rowIndex, colIndex] = getCellLocation(lastTakenCell)
     let row = rows[rowIndex]
     let column = columns[colIndex].slice(0, columns[colIndex].length - 1)
-    console.log(row)
-    console.log(column)
 
-    // check horizontally ---
+    // check horizontally, left side <---*
+    let colIndexLeft = colIndex - 1 // cell left of lastTakenCell
+    while (colIndexLeft >= 0) {
+        // if cell-left colour = same, add to winner[], else break out of loop
+        if (getCellColour(row[colIndexLeft]) === colour)  {
+            console.log(row[colIndexLeft])
+            winner.push(row[colIndexLeft])
+            colIndexLeft--
+        } else {
+            break
+        }
+    }
+    // check length of winner []
+    if (winner.length >= 4) return addWinClass(winner)
+
 
 
     // check horizontally 
