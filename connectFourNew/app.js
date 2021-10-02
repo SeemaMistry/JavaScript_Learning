@@ -201,12 +201,12 @@ const getCellColour = (cell) => {
 }
 
 const addWinClass = (winnerArray) => {
-    if (winnerArray.length < 4) return  // do nothing if array is too small
+    if (winnerArray.length < 4) return true // do nothing if array is too small
     // give each cell in winnerArray class of "win"
     for (const cell in winnerArray) {
         winnerArray[cell].classList.add("win")
     }
-
+    return false
 }
 
 
@@ -240,7 +240,10 @@ const checkStatusofGame = (lastTakenCell) => {
         }
     }
     // check length of winner []
-    if (winner.length >= 4) return addWinClass(winner)
+    gameIsLive = addWinClass(winner)
+
+    if (!gameIsLive) return // stop game is someone has won
+
 
 
 
@@ -263,6 +266,7 @@ const handleCellMouseOut = (e) => {
 }
 
 const handleCellClick = (e) => {
+    if (!gameIsLive) return // if someone has won, do not allow more click events
     // get div info and extract column index
     const cell = e.target 
     const [rowIndex, colIndex] = getCellLocation(cell)
