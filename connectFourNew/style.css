@@ -12,6 +12,7 @@ body {
     width: 100%;
     background: white;
     align-items: center;
+    text-align: center;
 }
 
 .game-board {
@@ -83,16 +84,6 @@ body {
   }
 
 /* Adding red and yellow */
-
-.cell.row-top.red::after {
-    background: red;
-    border: 3px solid black;
-  }
-  
-  .cell.row-top.yellow::after {
-    background: yellow;
-    border: 3px solid black;
-  }
 .cell:not(.row-top).red::after {
     background: red;
   }
@@ -108,7 +99,15 @@ body {
     background: yellow;
   }
 
- 
+  .cell.row-top.red::after {
+    background: red;
+    border: 3px solid black;
+  }
+  
+  .cell.row-top.yellow::after {
+    background: yellow;
+    border: 3px solid black;
+  }
 
 
 /* Style the footer: reset button and status */
