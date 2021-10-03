@@ -316,6 +316,19 @@ const checkStatusofGame = (lastTakenCell) => {
     }
 
     // bottom portion coordinates [rowIndex + 1, colIndex + 1]
+    rowIndexDown = rowIndex + 1 // cell above and
+    colIndexRight = colIndex + 1 // cell left
+    while (rowIndexDown < column.length) {
+        const cellToCheck = rows[rowIndexDown][colIndexRight] // get the cell below
+        // if cell-left colour = same, add to winner[], else break out of loop
+        if (getCellColour(cellToCheck) === colour)  {
+            winner.push(cellToCheck)
+            rowIndexDown++
+            colIndexRight++
+        } else {
+            break
+        }
+    }
     
     gameIsLive = addWinClass(winner) // set variable to true/false depending on if player won or not
     if (!gameIsLive) return // stop game is someone has won
