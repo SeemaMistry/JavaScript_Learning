@@ -192,7 +192,7 @@ const addFirstOpenCellForColumn = (colIndex) => {
 
 /* getCellColour(object) -> string
     Require: object = cell
-    Purpose: Take a cell object and determine what colour class it has in its class list. Return colour class name
+    Purpose: Take a cell object and determine what colour class it has in its class list. Return colour class name as a string
 */
 const getCellColour = (cell) => {
     if (cell.classList.contains("yellow"))  return "yellow"
@@ -202,7 +202,7 @@ const getCellColour = (cell) => {
 
 /* addWinClass(array) -> Boolean 
     Require: array = [array of winning cells]
-    Purpose: Check if array has 4 or more cells, then add "win" to each cell's classList. 
+    Purpose: Check if array has 4 or more cells, then add "win" to each cell's classList and call printWinnerStatus().
                 -> return true when player won
                 -> return false when player hasnt won
 
@@ -213,12 +213,13 @@ const addWinClass = (winnerArray) => {
     for (const cell in winnerArray) {
         winnerArray[cell].classList.add("win")
     } 
-    printWinnerStatus(getCellColour(winnerArray[0]))
-
-
+    printWinnerStatus(getCellColour(winnerArray[0])) // print who won to #status-el
     return false
 }
-
+/* printWinnerStatus(string) -> null
+    Require: string = "yellow" or "red"
+    Purpose: Add colour string to display on #status-el in html file
+*/
 const printWinnerStatus = (colour) => {
     statusEl.textContent = "The winner is: " + colour
 }
@@ -371,12 +372,14 @@ const checkStatusofGame = (lastTakenCell) => {
 const handleCellMouseOver = (e) => {
     const cell = e.target // get div attributes of cell
     const [rowIndex, colIndex] = getCellLocation(cell) // get cell coordinates
+    if (!gameIsLive) return
     // use col to get col-top
     const topCell = columns[colIndex][6]
     topCell.classList.add(yellowIsNext ? "yellow" : "red") // colour yellow/red topmost cell
 }
 
 const handleCellMouseOut = (e) => {
+    // if (!gameIsLive) return
     const cell = e.target // get div attributes of cell
     const [rowIndex, colIndex] = getCellLocation(cell) // get cell coordinates
     removeTopCellColour(colIndex)
@@ -395,7 +398,6 @@ const handleCellClick = (e) => {
 
     // check for winner
     checkStatusofGame(takenCell)
-    // TO DO: update game status to win
 
     // change colour of topCell and switch players
     yellowIsNext = !yellowIsNext
@@ -414,7 +416,6 @@ for (const row of rows) {
         cell.addEventListener("mouseout", handleCellMouseOut)
         // onclick, add yellow/red chip into slot
         cell.addEventListener("click", handleCellClick)
-
     }
 }
 
