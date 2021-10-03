@@ -320,7 +320,7 @@ for (const row of rows) {
     }
 }
 
-resetBtn.addEventListener("click", function () {
+resetBtn.addEventListener("click", function() {
     // reset all attributes to default and remove all class values of yellow, red and win
     gameIsLive = true
     yellowIsNext = true
