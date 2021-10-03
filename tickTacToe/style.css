@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    align-items: center;
+    text-align: center;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    width: 100%;
+    background:white;
+}
+
+.grid {
+    height: 300px;
+    width:300px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.cell {
+    background:skyblue;
+}
+
+/* Make an x mark https://stackoverflow.com/questions/18920542/draw-an-x-in-css */
+.cell.X::after {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "\58"; /* use the hex value here... */
+    font-size: 50px; 
+    color: #FFF;
+    line-height: 100px;
+    text-align: center;
+}
+.cell.O::after {
+    position:relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* content: "\274c"; use the hex value here... */
+    content: "\4F"; /* use the hex value here... */
+    font-size: 50px; 
+    color: #FFF;
+    line-height: 100px;
+    text-align: center;
+}
+
+.cell.right-border {
+    border-right: 5px solid black;
+}
+.cell.bottom-border {
+    border-bottom: 5px solid black;
+}
+
+/* round out the edges of the game */
+.corner-top-right {
+    border-radius: 0 10% 0 0;
+}
+.corner-top-left {
+    border-radius: 10% 0 0 0;
+}
+.corner-bottom-right {
+    border-radius: 0 0 10% 0;
+}
+.corner-bottom-left {
+    border-radius: 0 0 0 10%;
+}
+
+.footer {
+    margin-top: 20px;
+    align-items:center;
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
+
+button {
+    background-color: #4370F1;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    text-transform: uppercase;
+}
+
+.score {
+    text-align: left;
+}
