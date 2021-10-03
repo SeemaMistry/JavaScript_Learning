@@ -208,7 +208,6 @@ const getCellColour = (cell) => {
 
 */
 const addWinClass = (winnerArray) => {
-    // console.log("In addWinClass() and length is:" + winnerArray.length)
     if (winnerArray.length < 4) return true // do nothing if array is too small
     // give each cell in winnerArray class of "win"
     for (const cell in winnerArray) {
@@ -336,7 +335,6 @@ const checkStatusofGame = (lastTakenCell) => {
     colIndexLeft = colIndex - 1 // cell left
     while (colIndexLeft >= 0 && rowIndexDown < column.length) {
         const cellToCheck = rows[rowIndexDown][colIndexLeft] // get the cell below
-        console.log(cellToCheck)
         // if cell colour = same, add to winner[], else break out of loop
         if (getCellColour(cellToCheck) === colour)  {
             winner.push(cellToCheck)
@@ -353,7 +351,6 @@ const checkStatusofGame = (lastTakenCell) => {
     colIndexRight = colIndex + 1 // cell right
     while (colIndexRight < row.length && rowIndexUp >= 0) {
         const cellToCheck = rows[rowIndexUp][colIndexRight] // get the cell below
-        console.log(cellToCheck)
         // if cell colour = same, add to winner[], else break out of loop
         if (getCellColour(cellToCheck) === colour)  {
             winner.push(cellToCheck)
