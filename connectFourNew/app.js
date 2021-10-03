@@ -366,6 +366,24 @@ const checkStatusofGame = (lastTakenCell) => {
     // call addWinClass() to determine if player won or not. If false, player won and exit this function to stop game
     gameIsLive = addWinClass(winner) 
     if (!gameIsLive) return 
+
+
+    // tie game: all cells taken up by a chip, but none connect four of the same colour
+    const rowWithOutTop = rows.slice(0,6) // no row-top
+    for (const row of rowWithOutTop) {
+        for (const cell of row) {
+            const classList = getClassListArray(cell)
+            // if any cell does NOT have yellow or red, its not a tie
+            if (!classList.includes("yellow") && !classList.includes("red")) {
+                return
+            }
+        }
+    }
+    // all cells have a chip but no winner. Game is over and change status
+    gameIsLive = false
+    statusEl.textContent = "It's a tie!"
+    
+
 }
 
 // HANDLING EVENT CALLS
@@ -379,7 +397,6 @@ const handleCellMouseOver = (e) => {
 }
 
 const handleCellMouseOut = (e) => {
-    // if (!gameIsLive) return
     const cell = e.target // get div attributes of cell
     const [rowIndex, colIndex] = getCellLocation(cell) // get cell coordinates
     removeTopCellColour(colIndex)
