@@ -208,13 +208,14 @@ const getCellColour = (cell) => {
 
 */
 const addWinClass = (winnerArray) => {
+    console.log("In addWinClass() and length is:" + winnerArray.length)
     if (winnerArray.length < 4) return true // do nothing if array is too small
     // give each cell in winnerArray class of "win"
     for (const cell in winnerArray) {
         winnerArray[cell].classList.add("win")
-    }
-    let colour = getCellColour(winnerArray[0])
-    printWinnerStatus(colour)
+    } 
+    printWinnerStatus(getCellColour(winnerArray[0]))
+
 
     return false
 }
@@ -246,34 +247,61 @@ const checkStatusofGame = (lastTakenCell) => {
     while (colIndexLeft >= 0) {
         // if cell-left colour = same, add to winner[], else break out of loop
         if (getCellColour(row[colIndexLeft]) === colour)  {
-            console.log(row[colIndexLeft])
             winner.push(row[colIndexLeft])
             colIndexLeft--
         } else {
             break
         }
     }
+    console.log("length of winner array after Hori.Left: " + winner.length)
      // check horizontally, right side *--->
      let colIndexRight = colIndex + 1 // cell right of lastTakenCell
      while (colIndexRight < row.length) {
          // if cell-left colour = same, add to winner[], else break out of loop
          if (getCellColour(row[colIndexRight]) === colour)  {
-             console.log(row[colIndexRight])
              winner.push(row[colIndexRight])
              colIndexRight++
          } else {
              break
          }
      }
+     console.log("length of winner array after Hori.Right: " + winner.length)
 
     gameIsLive = addWinClass(winner) // set variable to true/false depending on if player won or not
-    
+    if (!gameIsLive) return // stop game is someone has won
+
+    // check vertically, down column  *--->
+    winner = [lastTakenCell]
+    let rowIndexDown = rowIndex + 1 // cell left of lastTakenCell
+    while (rowIndexDown < column.length) {
+        const cellToCheck = rows[rowIndexDown][colIndex] // get the cell below
+        // if cell-left colour = same, add to winner[], else break out of loop
+        if (getCellColour(cellToCheck) === colour)  {
+            winner.push(cellToCheck)
+            rowIndexDown++
+        } else {
+            break
+        }
+    }
+    console.log("length of winner array after Vert.Down: " + winner.length)
+
+    //  // check vertically, up column <---*
+    //  let rowIndexUp = rowIndex + 1 // cell right of lastTakenCell
+    //  while (rowIndexUp < column.length) {
+    //      // if cell-left colour = same, add to winner[], else break out of loop
+    //      if (getCellColour(column[rowIndexUp]) === colour)  {
+    //          winner.push(column[rowIndexUp])
+    //          rowIndexUp++
+    //      } else {
+    //          break
+    //      }
+    //  }
+
+    gameIsLive = addWinClass(winner) // set variable to true/false depending on if player won or not
     if (!gameIsLive) return // stop game is someone has won
 
 
-
-
-    // check horizontally 
+    
 }
 
 // HANDLING EVENT CALLS
