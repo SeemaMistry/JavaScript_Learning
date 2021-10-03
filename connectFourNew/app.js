@@ -213,7 +213,14 @@ const addWinClass = (winnerArray) => {
     for (const cell in winnerArray) {
         winnerArray[cell].classList.add("win")
     }
+    let colour = getCellColour(winnerArray[0])
+    printWinnerStatus(colour)
+
     return false
+}
+
+const printWinnerStatus = (colour) => {
+    statusEl.textContent = "The winner is: " + colour
 }
 
 
@@ -260,7 +267,7 @@ const checkStatusofGame = (lastTakenCell) => {
      }
 
     gameIsLive = addWinClass(winner) // set variable to true/false depending on if player won or not
-
+    
     if (!gameIsLive) return // stop game is someone has won
 
 
@@ -298,7 +305,7 @@ const handleCellClick = (e) => {
     // check for winner
     checkStatusofGame(takenCell)
     // TO DO: update game status to win
-    
+
     // change colour of topCell and switch players
     yellowIsNext = !yellowIsNext
     topCells[colIndex].classList.add(yellowIsNext ? "yellow" : "red")
