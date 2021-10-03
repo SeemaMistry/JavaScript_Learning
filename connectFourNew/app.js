@@ -298,7 +298,7 @@ const checkStatusofGame = (lastTakenCell) => {
     winner = [lastTakenCell] // reset winner array
     let rowIndexUp = rowIndex - 1 // cell above and
     colIndexLeft = colIndex - 1 // cell left
-    while (colIndexLeft >= 0) {
+    while (colIndexLeft >= 0 && rowIndexUp >= 0) {
         const cellToCheck = rows[rowIndexUp][colIndexLeft] // get the cell below
         // if cell colour = same, add to winner[], else break out of loop
         if (getCellColour(cellToCheck) === colour)  {
@@ -313,7 +313,7 @@ const checkStatusofGame = (lastTakenCell) => {
     // bottom portion coordinates [rowIndex + 1, colIndex + 1]
     rowIndexDown = rowIndex + 1 // cell below and
     colIndexRight = colIndex + 1 // cell right
-    while (rowIndexDown < column.length) {
+    while (rowIndexDown < column.length && colIndexRight < row.length) {
         const cellToCheck = rows[rowIndexDown][colIndexRight] // get the cell below
         // if cell colour = same, add to winner[], else break out of loop
         if (getCellColour(cellToCheck) === colour)  {
@@ -334,8 +334,7 @@ const checkStatusofGame = (lastTakenCell) => {
     winner = [lastTakenCell] // reset winner array
     rowIndexDown = rowIndex + 1 // cell below and
     colIndexLeft = colIndex - 1 // cell left
-    console.log(`rowDown is ${rowIndexDown} and colLeft is ${colIndexLeft}`)
-    while (colIndexLeft >= 0) {
+    while (colIndexLeft >= 0 && rowIndexDown < column.length) {
         const cellToCheck = rows[rowIndexDown][colIndexLeft] // get the cell below
         console.log(cellToCheck)
         // if cell colour = same, add to winner[], else break out of loop
@@ -349,6 +348,22 @@ const checkStatusofGame = (lastTakenCell) => {
         }
     }
 
+    // top portion coordinates [rowIndex - 1, colIndex + 1]
+    rowIndexUp = rowIndex - 1 // cell above and
+    colIndexRight = colIndex + 1 // cell right
+    while (colIndexRight < row.length && rowIndexUp >= 0) {
+        const cellToCheck = rows[rowIndexUp][colIndexRight] // get the cell below
+        console.log(cellToCheck)
+        // if cell colour = same, add to winner[], else break out of loop
+        if (getCellColour(cellToCheck) === colour)  {
+            winner.push(cellToCheck)
+            rowIndexUp--
+            colIndexRight++
+
+        } else {
+            break
+        }
+    }
 
     // call addWinClass() to determine if player won or not. If false, player won and exit this function to stop game
     gameIsLive = addWinClass(winner) 
