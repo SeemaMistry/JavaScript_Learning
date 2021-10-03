@@ -200,6 +200,13 @@ const getCellColour = (cell) => {
     else return null
 }
 
+/* addWinClass(array) -> Boolean 
+    Require: array = [array of winning cells]
+    Purpose: Check if array has 4 or more cells, then add "win" to each cell's classList. 
+                -> return true when player won
+                -> return false when player hasnt won
+
+*/
 const addWinClass = (winnerArray) => {
     if (winnerArray.length < 4) return true // do nothing if array is too small
     // give each cell in winnerArray class of "win"
@@ -239,8 +246,20 @@ const checkStatusofGame = (lastTakenCell) => {
             break
         }
     }
-    // check length of winner []
-    gameIsLive = addWinClass(winner)
+     // check horizontally, right side *--->
+     let colIndexRight = colIndex + 1 // cell right of lastTakenCell
+     while (colIndexRight < row.length) {
+         // if cell-left colour = same, add to winner[], else break out of loop
+         if (getCellColour(row[colIndexRight]) === colour)  {
+             console.log(row[colIndexRight])
+             winner.push(row[colIndexRight])
+             colIndexRight++
+         } else {
+             break
+         }
+     }
+
+    gameIsLive = addWinClass(winner) // set variable to true/false depending on if player won or not
 
     if (!gameIsLive) return // stop game is someone has won
 
@@ -266,7 +285,8 @@ const handleCellMouseOut = (e) => {
 }
 
 const handleCellClick = (e) => {
-    if (!gameIsLive) return // if someone has won, do not allow more click events
+    // if someone has won, do not allow more click events
+    if (!gameIsLive) return
     // get div info and extract column index
     const cell = e.target 
     const [rowIndex, colIndex] = getCellLocation(cell)
@@ -277,6 +297,7 @@ const handleCellClick = (e) => {
 
     // check for winner
     checkStatusofGame(takenCell)
+    // TO DO: update game status to win
     
     // change colour of topCell and switch players
     yellowIsNext = !yellowIsNext
@@ -298,4 +319,5 @@ for (const row of rows) {
 
     }
 }
+
 
