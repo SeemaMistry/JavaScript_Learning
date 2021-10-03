@@ -20,34 +20,40 @@ const displayCurrentPlayerEl = document.getElementById("player-el")
 let currentPlayer = 1
 
 // listen for when a square is cliked
-for (let i = 0; len = squares.length; i ++) (function(index) {
+for (let i = 0; len = squares.length; i ++){
     // onclick to each square
-    squares[i].onclick = function() {
+    // squares[i].onclick = () => {
+    squares[i].addEventListener("click", function() {
         // when current div is available: current div != taken, AND directly below div (current div + 7) != taken
         // if div below (7+ more) is taken, you can take spot ontop of it
-        if (squares[index + 7].classList.contains("taken") &&! squares[i].classList.contains("taken")) {
+        if (squares[i + 7].classList.contains("taken") &&! squares[i].classList.contains("taken")) {
             if (currentPlayer === 1) {
                 // claim available div as taken and to player-one
-                squares[index].classList.add("taken")
-                squares[index].classList.add("player-one")
+                squares[i].classList.add("taken")
+                squares[i].classList.add("player-one")
                 // change to the next player
                 currentPlayer = 2
-                displayCurrentPlayerEl.innerHTML(currentPlayer) // this will be displayed in <span> on screen
+                displayCurrentPlayerEl.innerHTML = currentPlayer // this will be displayed in <span> on screen
             } else if (currentPlayer === 2) {
                  // claim available div as taken and to player-two
-                 squares[index].classList.add("taken")
-                 squares[index].classList.add("player-two")
+                 squares[i].classList.add("taken")
+                 squares[i].classList.add("player-two")
                  // change to the next player
                  currentPlayer = 1
-                 displayCurrentPlayerEl.innerHTML(currentPlayer) // this will be displayed in <span> on screen
+                 displayCurrentPlayerEl.innerHTML = currentPlayer // this will be displayed in <span> on screen
             }
-            else
+            else{
                 // if selecting invalid square, show alert to user
                 alert("Can't go here")
+            }
             
         }
 
-    }
-}) (i // for loop i-index call here)
+    })
+}
+
+function checkBoard() {
+    
+}
 
 
