@@ -401,7 +401,14 @@ const handleCellClick = (e) => {
 
     // change colour of topCell and switch players
     yellowIsNext = !yellowIsNext
-    topCells[colIndex].classList.add(yellowIsNext ? "yellow" : "red")
+    // clear colour from topCell
+    const topCell = columns[colIndex][6]
+    topCell.classList.remove("yellow")
+    topCell.classList.remove("red")
+
+    if (gameIsLive) {
+        topCells[colIndex].classList.add(yellowIsNext ? "yellow" : "red")
+    }
 
 }
 
