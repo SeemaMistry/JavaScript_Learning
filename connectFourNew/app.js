@@ -227,25 +227,31 @@ const printWinnerStatus = (colour) => {
 
 /* checkForWinner(object) -> Boolean 
     Require: object = cell object 
-    Purpose: Using the lastTaken cell, determine if that player has won.
-                -> return true when player won
-                -> return false when player hasnt won
+    Purpose: Using the lastTakenCell, determine if that player has won. 
+                Check all directions and use addWinClass() to determine if winner or not
+                    - horizontally (left and right of lastTakenCell)
+                    - vertically (below lastTakenCell)
+                    - diagonally, top left to bottom right \ (top portion and bottom portion)
+                    - diagonally, bottom left to top right / (bottom portion and top portion)
+
+                    -> return true when player won
+                    -> return false when player hasnt won
 
 */
 const checkStatusofGame = (lastTakenCell) => {
     const colour = getCellColour(lastTakenCell) // get colour of cell
     if (!colour) return // handle null colour by doing nothing
     
-    // get attributes: row, column, winnerArray
+    // get attributes: row, column, winner array
     let winner = [lastTakenCell]
     const [rowIndex, colIndex] = getCellLocation(lastTakenCell)
     let row = rows[rowIndex]
-    let column = columns[colIndex].slice(0, columns[colIndex].length - 1)
+    let column = columns[colIndex].slice(0, columns[colIndex].length - 1) // remove last item b/c thats row-top cell
 
     // check horizontally, left side <---*
     let colIndexLeft = colIndex - 1 // cell left of lastTakenCell
     while (colIndexLeft >= 0) {
-        // if cell-left colour = same, add to winner[], else break out of loop
+        // if cell colour = same, add to winner[], else break out of loop
         if (getCellColour(row[colIndexLeft]) === colour)  {
             winner.push(row[colIndexLeft])
             colIndexLeft--
@@ -256,8 +262,8 @@ const checkStatusofGame = (lastTakenCell) => {
      // check horizontally, right side *--->
      let colIndexRight = colIndex + 1 // cell right of lastTakenCell
      while (colIndexRight < row.length) {
-         // if cell-left colour = same, add to winner[], else break out of loop
-         if (getCellColour(row[colIndexRight]) === colour)  {
+        // if cell colour = same, add to winner[], else break out of loop
+        if (getCellColour(row[colIndexRight]) === colour)  {
              winner.push(row[colIndexRight])
              colIndexRight++
          } else {
@@ -265,15 +271,16 @@ const checkStatusofGame = (lastTakenCell) => {
          }
      }
 
-    gameIsLive = addWinClass(winner) // set variable to true/false depending on if player won or not
-    if (!gameIsLive) return // stop game is someone has won
+    // call addWinClass() to determine if player won or not. If false, player won and exit this function to stop game
+    gameIsLive = addWinClass(winner) 
+    if (!gameIsLive) return 
 
     // check vertically, down column  *--->
-    winner = [lastTakenCell]
-    let rowIndexDown = rowIndex + 1 // cell left of lastTakenCell
+    winner = [lastTakenCell] // reset winner array
+    let rowIndexDown = rowIndex + 1 // cell below lastTakenCell
     while (rowIndexDown < column.length) {
         const cellToCheck = rows[rowIndexDown][colIndex] // get the cell below
-        // if cell-left colour = same, add to winner[], else break out of loop
+        // if cell colour = same, add to winner[], else break out of loop
         if (getCellColour(cellToCheck) === colour)  {
             winner.push(cellToCheck)
             rowIndexDown++
@@ -281,31 +288,19 @@ const checkStatusofGame = (lastTakenCell) => {
             break
         }
     }
-// TO DO: possibly remove vertically up column
-    // check vertically, up column  <---*
-    let rowIndexUp = rowIndex - 1 // cell left of lastTakenCell
-    while (rowIndexUp >= 0) {
-        const cellToCheck = rows[rowIndexUp][colIndex] // get the cell below
-        // if cell-left colour = same, add to winner[], else break out of loop
-        if (getCellColour(cellToCheck) === colour)  {
-            winner.push(cellToCheck)
-            rowIndexUp--
-        } else {
-            break
-        }
-    }
-    gameIsLive = addWinClass(winner) // set variable to true/false depending on if player won or not
-    if (!gameIsLive) return // stop game is someone has won
+    // call addWinClass() to determine if player won or not. If false, player won and exit this function to stop game
+    gameIsLive = addWinClass(winner) 
+    if (!gameIsLive) return 
   
 
     // check diagonally, top left to bottom right \
     // top portion coordinates [rowIndex - 1, colIndex -1]
-    winner = [lastTakenCell]
-    rowIndexUp = rowIndex - 1 // cell above and
+    winner = [lastTakenCell] // reset winner array
+    let rowIndexUp = rowIndex - 1 // cell above and
     colIndexLeft = colIndex - 1 // cell left
     while (colIndexLeft >= 0) {
         const cellToCheck = rows[rowIndexUp][colIndexLeft] // get the cell below
-        // if cell-left colour = same, add to winner[], else break out of loop
+        // if cell colour = same, add to winner[], else break out of loop
         if (getCellColour(cellToCheck) === colour)  {
             winner.push(cellToCheck)
             rowIndexUp--
@@ -316,11 +311,11 @@ const checkStatusofGame = (lastTakenCell) => {
     }
 
     // bottom portion coordinates [rowIndex + 1, colIndex + 1]
-    rowIndexDown = rowIndex + 1 // cell above and
-    colIndexRight = colIndex + 1 // cell left
+    rowIndexDown = rowIndex + 1 // cell below and
+    colIndexRight = colIndex + 1 // cell right
     while (rowIndexDown < column.length) {
         const cellToCheck = rows[rowIndexDown][colIndexRight] // get the cell below
-        // if cell-left colour = same, add to winner[], else break out of loop
+        // if cell colour = same, add to winner[], else break out of loop
         if (getCellColour(cellToCheck) === colour)  {
             winner.push(cellToCheck)
             rowIndexDown++
@@ -329,9 +324,12 @@ const checkStatusofGame = (lastTakenCell) => {
             break
         }
     }
-    
-    gameIsLive = addWinClass(winner) // set variable to true/false depending on if player won or not
-    if (!gameIsLive) return // stop game is someone has won
+
+    // call addWinClass() to determine if player won or not. If false, player won and exit this function to stop game
+    gameIsLive = addWinClass(winner) 
+    if (!gameIsLive) return 
+
+ 
 }
 
 // HANDLING EVENT CALLS
