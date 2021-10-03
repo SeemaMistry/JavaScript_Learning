@@ -293,8 +293,9 @@ const checkStatusofGame = (lastTakenCell) => {
         } else {
             break
         }
-        }
-
+    }
+    gameIsLive = addWinClass(winner) // set variable to true/false depending on if player won or not
+    if (!gameIsLive) return // stop game is someone has won
   
 
     // check diagonally, top left to bottom right \
@@ -303,11 +304,11 @@ const checkStatusofGame = (lastTakenCell) => {
     rowIndexUp = rowIndex - 1 // cell above and
     colIndexLeft = colIndex - 1 // cell left
     while (colIndexLeft >= 0) {
-        const cellToCheck = rows[rowIndexDown][colIndexLeft] // get the cell below
+        const cellToCheck = rows[rowIndexUp][colIndexLeft] // get the cell below
         // if cell-left colour = same, add to winner[], else break out of loop
         if (getCellColour(cellToCheck) === colour)  {
             winner.push(cellToCheck)
-            rowIndexDown--
+            rowIndexUp--
             colIndexLeft--
         } else {
             break
