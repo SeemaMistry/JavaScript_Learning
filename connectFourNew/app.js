@@ -320,4 +320,18 @@ for (const row of rows) {
     }
 }
 
+resetBtn.addEventListener("click", function () {
+    // reset all attributes to default and remove all class values of yellow, red and win
+    gameIsLive = true
+    yellowIsNext = true
+    statusEl.textContent = ""
 
+    for (const row of rows) {
+        for (const cell of row) { 
+            cell.classList.remove("yellow")
+            cell.classList.remove("red")
+            cell.classList.remove("win")
+        }
+    }
+
+})
