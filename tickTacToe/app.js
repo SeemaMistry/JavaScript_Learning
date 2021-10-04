@@ -121,12 +121,9 @@ const winnerArrayCheck = (winnerArray) => {
         return true
     }
    
-
-
-    // if (winnerArray.length < 3) return true // not winner, gameIsLive = true
-
     // for winner, add "win" class to each cell to highlight later, gameIsLive = false
     for (const direction of winnerArray) {
+        if (direction.length !== 3) {continue}
         for (const cell of direction) {
             cell.classList.add("win")
         }
@@ -259,15 +256,20 @@ const checkStatusOfGame = (lastTakenCell) => {
     }
 
 
-
     // at the end check if you have any winning arrays inside winner [ [], [], [], [] ]
     gameIsLive = winnerArrayCheck(winner) // call winnerArrayCheck
     if (!gameIsLive) return // exit if winner found 
-    winner = [lastTakenCell] // reset winner[]
 
+    // CHECKING A TIE
+    for (const eachRow of rows) {
+        for (const cell of eachRow) {
+            if (!cell.classList.contains("X") && !cell.classList.contains("O")) {
+                return // there exists empty cells, game is still live
+            }
+        }
+    }
+    gameMsgEl.textContent = "It's a tie! Play another round, or exit."
 
-
-  
 }
 
 //////////////// HANDLE EVENTS ////////////////
