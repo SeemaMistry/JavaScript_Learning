@@ -44,6 +44,7 @@ const clearGridCells = () => {
             cell.classList.remove("X")
             cell.classList.remove("O")
             cell.classList.remove("taken")
+            cell.classList.remove("win")
         }
     } 
 }
@@ -150,7 +151,7 @@ const checkStatusOfGame = (lastTakenCell) => {
     // loop until out of bound
     while(col >= 0) {
         const cellToCheck = rows[rowIndex][col]
-        if (cellToCheck.classList.contains("X")) {
+        if (cellToCheck.classList.contains("X") || cellToCheck.classList.contains("O")) {
             winner.push(cellToCheck)
             col--
         } else {break}
@@ -161,7 +162,7 @@ const checkStatusOfGame = (lastTakenCell) => {
     // loop until out of bound
     while(col < rowLength) {
         const cellToCheck = rows[rowIndex][col]
-        if (cellToCheck.classList.contains("X")) {
+        if (cellToCheck.classList.contains("X") || cellToCheck.classList.contains("O")) {
             winner.push(cellToCheck)
             col++
         } else {break}
