@@ -3,10 +3,10 @@ const grid = document.querySelector(".grid")
 const allCells = document.querySelectorAll(".cell")
  
 const exitBtn = document.querySelector("#exit-btn")
-const anotherRoundBtn = document.querySelectorAll("#anotherRound-btn")
+const anotherRoundBtn = document.querySelector("#anotherRound-btn")
 
-const xScoreEl = document.querySelector("#xscore-el")
-const oScoreEl = document.querySelector("#oscore-el")
+const xPointsEl = document.querySelector("#xPoints-el")
+const oPointsEl = document.querySelector("#oPoints-el")
 
 //////////////// SORT ALL THE ROWS ////////////////
 const row0 = [allCells[0], allCells[1], allCells[2]]
@@ -25,10 +25,26 @@ const columns = [col0, col1, col2]
 let gameIsLive = true
 let xTurn = true
 
-let xPoints = 0
-let oPoints = 0
+let xPoints = 10
+let oPoints = 3
+
+xPointsEl.textContent = xPoints
+oPointsEl.textContent = oPoints
 
 //////////////// UTILITY FUNCTIONS ////////////////
+
+/* clearGridCells() -> null
+    Purpose: Remove all X, O and taken classes from each cell
+*/
+const clearGridCells = () => {
+    for (const row of rows) {
+        for (const cell of row) {
+            cell.classList.remove("X")
+            cell.classList.remove("O")
+            cell.classList.remove("taken")
+        }
+    } 
+}
 
 /* getCellClassList (cell) -> [...classList]
     Require: cell = cell Object
@@ -112,3 +128,20 @@ for (const row of rows) {
         // click
     }
 }
+
+anotherRoundBtn.addEventListener("click", function () {
+    clearGridCells()
+    gameIsLive = true
+})
+
+exitBtn.addEventListener("click", function() {
+    clearGridCells()
+    
+    gameIsLive = true
+    xTurn = true
+
+    xPoints = 0
+    oPoints = 0
+    xPointsEl.textContent = xPoints
+    oPointsEl.textContent = oPoints
+})

@@ -10,17 +10,17 @@
         <h1>Tic Tac Toe</h1>
 
         <div class="grid">
-            <div class="cell row-0 col-0 right-border bottom-border corner-top-left"></div>
+            <div class="cell taken X row-0 col-0 right-border bottom-border corner-top-left"></div>
             <div class="cell row-0 col-1 right-border bottom-border"></div>
             <div class="cell row-0 col-2 bottom-border corner-top-right"></div>
 
             <div class="cell row-1 col-0 right-border bottom-border"></div>
             <div class="cell row-1 col-1 right-border bottom-border"></div>
-            <div class="cell row-1 col-2 bottom-border"></div>
+            <div class="cell taken O row-1 col-2 bottom-border"></div>
 
             <div class="cell row-2 col-0 right-border corner-bottom-left"></div>
-            <div class="cell row-2 col-1 right-border"></div>
-            <div class="cell row-2 col-2 corner-bottom-right"></div>
+            <div class="cell taken O row-2 col-1 right-border"></div>
+            <div class="cell taken X row-2 col-2 corner-bottom-right"></div>
         </div>
         <div class="footer">
             <button id="exit-btn">EXIT</button>
@@ -28,8 +28,8 @@
         </div>
 
         <h2 id="score-el">Score:</h2>
-        <h3 id="xScore-el">X: </h3>
-        <h3 id="oScore-el">O: </h3>
+        <h3 id="xScore-el">X: <span id="xPoints-el"></span> </h3>
+        <h3 id="oScore-el">O: <span id="oPoints-el"></span></h3>
         
         <script src="app.js"></script>
     </body>
