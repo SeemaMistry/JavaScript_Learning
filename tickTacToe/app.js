@@ -29,7 +29,48 @@ let xPoints = 0
 let oPoints = 0
 
 // UTILITY FUNCTIONS 
+/* getCellClassList (cell) -> [...classList]
+    Require: cell = cell Object
+    Purpose: get an array containing the cell's classList
+*/
+const getCellClassList = (cell) => {
+    const classList = cell.classList
+    return [...classList]
+}
+
+/* getCellLocation (cell) -> [rowIndex, colIndex]
+    Require: cell = cell Object
+    Purpose: get an array containing the row and column of the cell
+*/
+const getCellLocation = (cell) => {
+    const classList = getCellClassList(cell)
+    const rowClass = classList.find(className => className.includes("row"))
+    const colClass = classList.find(className => className.includes("col"))
+    const rowIndex = rowClass[4]
+    const colIndex = colClass[4]
+    return [parseInt(rowIndex, 10), parseInt(colIndex, 10)]
+    
+}
 
 // HANDLE EVENTS
 
+/* handleMouseOver(e)
+    Require: e = event on a cell
+    Purpose: When mouse hovers over a cell of the grid, show player's X or O on square
+*/
+const handleMouseOver = (e) => {
+    // get cell location 
+    const cell = e.target
+    const [rowIndex, colIndex] = getCellLocation(cell)
+    
+}
+
 // ADD EVENTS
+for (const row of rows) {
+    for (const cell of row) {
+        // hover on
+        cell.addEventListener("mouseover", handleMouseOver)
+        // hover off
+        // click
+    }
+}
