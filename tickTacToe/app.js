@@ -68,6 +68,16 @@ const removePlayerMarkToCellClassList = (cell) => {
     cell.classList.remove(xTurn ? "X" : "O")
 }
 
+/* isCellTaken(cell) -> Boolean
+    Require: cell = cell object
+    Purpose: Return true if cell is already taken up by an X or O. Else return false
+*/
+const isCellTaken = (cell) => {
+    const classList = getCellClassList(cell)
+    const isTaken = classList.includes("taken")
+    return isTaken
+}
+
 //////////////// HANDLE EVENTS ////////////////
 
 /* handleMouseOver(e)
@@ -77,14 +87,19 @@ const removePlayerMarkToCellClassList = (cell) => {
 const handleMouseOver = (e) => {
     // get cell location 
     const cell = e.target
+    if (isCellTaken(cell)) return // dont re-write mark if cell is "taken"
     addPlayerMarkToCellClassList(cell)
-    const [rowIndex, colIndex] = getCellLocation(cell)
+    // const [rowIndex, colIndex] = getCellLocation(cell)
 }
 
+/* handleMouseOut(e)
+    Require: e = event on a cell
+    Purpose: When mouse moves away from a cell of the grid, remove player's X or O on square
+*/
 const handleMouseOut = (e) => {
     const cell = e.target
+    if(isCellTaken(cell)) return // dont remove mark if cell is "taken"
     removePlayerMarkToCellClassList(cell)
-
 }
 
 //////////////// ADD EVENTS ////////////////
