@@ -1,6 +1,8 @@
 //////////////// DOM ////////////////
 const grid = document.querySelector(".grid")
 const allCells = document.querySelectorAll(".cell")
+
+const gameMsgEl = document.querySelector("#game-msg-el")
  
 const exitBtn = document.querySelector("#exit-btn")
 const anotherRoundBtn = document.querySelector("#anotherRound-btn")
@@ -103,6 +105,22 @@ const addPointToPlayer = () => {
     xTurn ? xPoints += 1 : oPoints += 1
     xTurn ? xPointsEl.textContent = xPoints : oPointsEl.textContent = oPoints
 }
+/* winnerArrayCheck( [winnerArray] ) -> Boolean
+    Require: [winnerArray] = array of possible winner cells
+    Purpose: Checks if winnerArray has enough cells to become a winner, >= 3. 
+            Return value will set gameIsLive variable
+                -> Not a winner return true
+                -> Winner return false
+*/
+const winnerArrayCheck = (winnerArray) => {
+    if (winnerArray.length < 3) return true // not winner, gameIsLive = true
+
+    // for winner, add "win" class to each cell to highlight later, gameIsLive = false
+    for (const cell of winnerArray) {
+        cell.classList.add("win")
+    }
+    return false
+}
 
 /* checkStatusOfGame(lastTakenCell) -> Boolean
     Require: lastTakenCell = cell object
@@ -120,6 +138,38 @@ const addPointToPlayer = () => {
                     - display who's turn it is
                         -> return true
 */
+const checkStatusOfGame = (lastTakenCell) => {
+    // get row, column of cell, make winner[]
+    const [rowIndex, colIndex] = getCellLocation(lastTakenCell)
+    let winner = [lastTakenCell]
+    const rowLength = rows[row].length
+    const columnLength = columns[colIndex].length
+
+    // CHECK HORIZONTALLY --- left side
+    let col = colIndex - 1 // get cell left
+    // loop until out of bound
+    while(col >= 0) {
+        const cellToCheck = rows[rowIndex][col]
+        if (cellToCheck.classList.includes("X")) {
+            winner.push(cellToCheck)
+        } else {break}
+    }
+
+    // CHECK HORIZONTALLY --- right side
+     let col = colIndex + 1 // get cell right
+    // loop until out of bound
+    while(col < rowLength) {
+        const cellToCheck = rows[rowIndex][col]
+        if (cellToCheck.classList.includes("X")) {
+            winner.push(cellToCheck)
+        } else {break}
+    }
+
+    gameIsLive = winnerCheck(winner) // call winnerCheck
+    if (!gameIsLive) return // exit if winner found 
+    winner = [lastTakenCell] // reset winner[]
+
+}
 
 //////////////// HANDLE EVENTS ////////////////
 
@@ -167,8 +217,6 @@ const handleCellClick = (e) => {
 
     // switch player
     xTurn = !xTurn
-
-    
 }
 
 //////////////// ADD EVENTS ////////////////
