@@ -120,6 +120,7 @@ const winnerArrayCheck = (winnerArray) => {
     for (const cell of winnerArray) {
         cell.classList.add("win")
     }
+    addPointToPlayer() // give player point
     return false
 }
 
