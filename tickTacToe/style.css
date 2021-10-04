@@ -21,6 +21,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    margin-bottom: 20px;
 }
 
 .cell {
@@ -99,7 +100,7 @@ button {
 #score-el {
     /* text-align: left; */
 
-    margin-top: 20px;
+    margin-top: 10px;
     align-items:center;
     display: flex;
     justify-content: space-between;

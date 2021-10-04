@@ -104,6 +104,23 @@ const addPointToPlayer = () => {
     xTurn ? xPointsEl.textContent = xPoints : oPointsEl.textContent = oPoints
 }
 
+/* checkStatusOfGame(lastTakenCell) -> Boolean
+    Require: lastTakenCell = cell object
+    Purpose: Check if the player has won horizontally, vertically, or diagonally. 
+            Boolean value return will be used to set gameIsLive value.
+                If they won: 
+                    - highlight winning set
+                    - add point to player
+                    - display winner msg
+                        -> return false
+                If they tie:
+                    - display tie message
+                        -> return false
+                If no winner yet:
+                    - display who's turn it is
+                        -> return true
+*/
+
 //////////////// HANDLE EVENTS ////////////////
 
 /* handleCellMouseOver(e)
