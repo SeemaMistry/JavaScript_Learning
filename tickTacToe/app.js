@@ -94,6 +94,13 @@ const isCellTaken = (cell) => {
     return isTaken
 }
 
+// TO DO: add points to user and display to screen
+const addPointToPlayer = () => {
+    // use XTurn to determine who to add a point to 
+    xTurn ? xPoints += 1 : oPoints += 1
+    xTurn ? xPointsEl.textContent = xPoints : oPointsEl.textContent = oPoints
+}
+
 //////////////// HANDLE EVENTS ////////////////
 
 /* handleCellMouseOver(e)
@@ -116,13 +123,21 @@ const handleCellMouseOut = (e) => {
     const cell = e.target
     if(isCellTaken(cell)) return // dont remove mark if cell is "taken"
     removePlayerMarkToCellClassList(cell)
+    addPointToPlayer()
 }
 
 /* handleCellClick(e)
     Require: e = event on a cell
     Purpose: If cell is not taken, add X or O mark depending on which player's turn it is
 */
-const handleCellClick = (e) => {}
+const handleCellClick = (e) => {
+    // get cell
+    // check if its taken
+    // add X or O
+
+    // check game status: true or false
+    // stop game if someone won
+}
 
 //////////////// ADD EVENTS ////////////////
 for (const row of rows) {
