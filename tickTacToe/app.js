@@ -159,8 +159,8 @@ const checkStatusOfGame = (lastTakenCell) => {
     let horizontal = [lastTakenCell]
     let vertical = [lastTakenCell]
     let diagonalTopLeftDown = [lastTakenCell]
-    let diagonallyBottomLeftUp = [lastTakenCell]
-    let winner = [horizontal, vertical, diagonalTopLeftDown, diagonallyBottomLeftUp]
+    let diagonalBottomLeftUp = [lastTakenCell]
+    let winner = [horizontal, vertical, diagonalTopLeftDown, diagonalBottomLeftUp]
 
     // CHECK HORIZONTALLY --- left side
     let col = colIndex - 1 // get cell left
@@ -229,6 +229,32 @@ const checkStatusOfGame = (lastTakenCell) => {
             diagonalTopLeftDown.push(cellToCheck)
             row++
             col++
+        } else {break}
+    }
+
+    // CHECK DIAGONALLY / Bottom LEFT TO BOTTOM RIGHT / --- upwards [row - 1, col + 1]
+    row = rowIndex - 1 // get cell diagonally above-right
+    col = colIndex + 1
+    // loop until out of bound
+    while(row >= 0 && col < columnLength) {
+        const cellToCheck = rows[row][col]
+        if (xTurn ? cellToCheck.classList.contains("X") : cellToCheck.classList.contains("O")) {
+            diagonalBottomLeftUp.push(cellToCheck)
+            row--
+            col++
+        } else {break}
+    }
+
+    // CHECK DIAGONALLY / Bottom LEFT TO BOTTOM RIGHT / downwards [row + 1, col - 1]
+    row = rowIndex + 1 // get cell diagonally below-left
+    col = colIndex - 1
+    // loop until out of bound
+    while(row < columnLength && col >= 0) {
+        const cellToCheck = rows[row][col]
+        if (xTurn ? cellToCheck.classList.contains("X") : cellToCheck.classList.contains("O")) {
+            diagonalBottomLeftUp.push(cellToCheck)
+            row++
+            col--
         } else {break}
     }
 
