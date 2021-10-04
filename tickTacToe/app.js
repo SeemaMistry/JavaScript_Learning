@@ -129,6 +129,7 @@ const winnerArrayCheck = (winnerArray) => {
         }
     }
     addPointToPlayer() // give player point
+    gameMsgEl.textContent = `Player ${xTurn ? "X" : "O"} is the winner!` 
     return false
 }
 
@@ -322,7 +323,6 @@ const handleCellClick = (e) => {
 
     // switch player
     xTurn = !xTurn
-
 }
 
 //////////////// ADD EVENTS ////////////////
@@ -340,6 +340,7 @@ for (const row of rows) {
 anotherRoundBtn.addEventListener("click", function () {
     clearGridCells()
     gameIsLive = true
+    gameMsgEl.textContent = "Let's Play!"
 })
 
 exitBtn.addEventListener("dblclick", function() {
@@ -352,4 +353,6 @@ exitBtn.addEventListener("dblclick", function() {
     oPoints = 0
     xPointsEl.textContent = xPoints
     oPointsEl.textContent = oPoints
+    gameMsgEl.textContent = "Let's Play!"
+
 })
