@@ -60,6 +60,14 @@ const addPlayerMarkToCellClassList = (cell) => {
     cell.classList.add(xTurn ? "X" : "O")
 }
 
+/* removePlayerMarkToCellClassList(cell) -> null
+    Require: cell = cell object
+    Purpose: Add "X" or "O" to cell's classList based on whos turn it is
+*/
+const removePlayerMarkToCellClassList = (cell) => {
+    cell.classList.remove(xTurn ? "X" : "O")
+}
+
 //////////////// HANDLE EVENTS ////////////////
 
 /* handleMouseOver(e)
@@ -71,8 +79,12 @@ const handleMouseOver = (e) => {
     const cell = e.target
     addPlayerMarkToCellClassList(cell)
     const [rowIndex, colIndex] = getCellLocation(cell)
+}
 
-    
+const handleMouseOut = (e) => {
+    const cell = e.target
+    removePlayerMarkToCellClassList(cell)
+
 }
 
 //////////////// ADD EVENTS ////////////////
@@ -81,6 +93,7 @@ for (const row of rows) {
         // hover on
         cell.addEventListener("mouseover", handleMouseOver)
         // hover off
+        cell.addEventListener("mouseout", handleMouseOut)
         // click
     }
 }
