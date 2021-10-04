@@ -3,6 +3,7 @@ const grid = document.querySelector(".grid")
 const allCells = document.querySelectorAll(".cell")
 
 const gameMsgEl = document.querySelector("#game-msg-el")
+const gameRoundsEl = document.querySelector("#rounds-el")
  
 const exitBtn = document.querySelector("#exit-btn")
 const anotherRoundBtn = document.querySelector("#anotherRound-btn")
@@ -26,6 +27,9 @@ const columns = [col0, col1, col2]
 //////////////// VARIABLES ////////////////
 let gameIsLive = true
 let xTurn = true
+
+let rounds = 1
+gameRoundsEl.textContent = rounds
 
 let xPoints = 0
 let oPoints = 0
@@ -341,6 +345,8 @@ anotherRoundBtn.addEventListener("click", function () {
     clearGridCells()
     gameIsLive = true
     gameMsgEl.textContent = "Let's Play!"
+    rounds += 1
+    gameRoundsEl.textContent = rounds
 })
 
 exitBtn.addEventListener("dblclick", function() {
@@ -354,5 +360,7 @@ exitBtn.addEventListener("dblclick", function() {
     xPointsEl.textContent = xPoints
     oPointsEl.textContent = oPoints
     gameMsgEl.textContent = "Let's Play!"
+    rounds = 1
+    gameRoundsEl.textContent = rounds
 
 })
