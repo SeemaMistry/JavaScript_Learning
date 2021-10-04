@@ -120,6 +120,18 @@ button {
     text-decoration: underline;
     font-weight: bold;
 }
+
+#game-count-el {
+    margin-top: 10px;
+    align-items:center;
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    font-weight: bold;
+    border: 5px solid skyblue;
+    padding: 5px;
+}
+
 #xScore-el {
     /* text-align: left; */
 
