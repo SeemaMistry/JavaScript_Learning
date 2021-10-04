@@ -114,10 +114,13 @@ const addPointToPlayer = () => {
                 -> Winner return false
 */
 const winnerArrayCheck = (winnerArray) => {
-    if (winnerArray[0].length !==3 && winnerArray[1].length !== 3) { 
+    // TO DO: make this more efficient or look better. It looks clunky
+    if (winnerArray[0].length !==3 && winnerArray[1].length !== 3 &&
+        winnerArray[2].length !== 3 && winnerArray[3].length !== 3) { 
         console.log("Not 3 in a row")
         return true
     }
+   
 
 
     // if (winnerArray.length < 3) return true // not winner, gameIsLive = true
@@ -155,9 +158,9 @@ const checkStatusOfGame = (lastTakenCell) => {
     const columnLength = columns[colIndex].length
     let horizontal = [lastTakenCell]
     let vertical = [lastTakenCell]
-    let diagonalLeftToRight = [lastTakenCell]
-    let diagonalRightToLeft = [lastTakenCell]
-    let winner = [horizontal, vertical, diagonalLeftToRight, diagonalRightToLeft]
+    let diagonalTopLeftDown = [lastTakenCell]
+    let diagonallyBottomLeftUp = [lastTakenCell]
+    let winner = [horizontal, vertical, diagonalTopLeftDown, diagonallyBottomLeftUp]
 
     // CHECK HORIZONTALLY --- left side
     let col = colIndex - 1 // get cell left
@@ -200,6 +203,32 @@ const checkStatusOfGame = (lastTakenCell) => {
         if (xTurn ? cellToCheck.classList.contains("X") : cellToCheck.classList.contains("O")) {
             vertical.push(cellToCheck)
             row--
+        } else {break}
+    }
+
+    // CHECK DIAGONALLY \ TOP LEFT TO BOTTOM RIGHT \ --- upwards [row - 1, col -1]
+    row = rowIndex - 1 // get cell diagonally above-left
+    col = colIndex - 1
+    // loop until out of bound
+    while(row >= 0 && col >= 0) {
+        const cellToCheck = rows[row][col]
+        if (xTurn ? cellToCheck.classList.contains("X") : cellToCheck.classList.contains("O")) {
+            diagonalTopLeftDown.push(cellToCheck)
+            row--
+            col--
+        } else {break}
+    }
+
+    // CHECK DIAGONALLY \ TOP LEFT TO BOTTOM RIGHT \ downwards [row + 1, col + 1]
+    row = rowIndex + 1 // get cell diagonally below-right
+    col = colIndex + 1
+    // loop until out of bound
+    while(row < columnLength && col < rowLength) {
+        const cellToCheck = rows[row][col]
+        if (xTurn ? cellToCheck.classList.contains("X") : cellToCheck.classList.contains("O")) {
+            diagonalTopLeftDown.push(cellToCheck)
+            row++
+            col++
         } else {break}
     }
 
