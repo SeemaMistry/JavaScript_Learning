@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* align-content: center; */
 }
 
 body {
@@ -16,8 +17,8 @@ body {
 }
 
 .grid {
-    height: 300px;
-    width:300px;
+    height: 320px;
+    width:320px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -30,7 +31,7 @@ body {
 
 /* Make an x mark https://stackoverflow.com/questions/18920542/draw-an-x-in-css */
 .cell.X::after {
-    position: relative;
+    /* position: relative; */
     top: 0;
     bottom: 0;
     left: 0;
@@ -40,6 +41,7 @@ body {
     color: #FFF;
     line-height: 100px;
     text-align: center;
+    align-items: center;
 }
 .cell.O::after {
     position:relative;
@@ -60,6 +62,16 @@ body {
 }
 .cell.bottom-border {
     border-bottom: 5px solid black;
+}
+
+.cell.win::after {
+    display: inline-block;
+    line-height: 80px;
+    background:red;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-top: 10px;
 }
 
 /* round out the edges of the game */
