@@ -94,7 +94,10 @@ const isCellTaken = (cell) => {
     return isTaken
 }
 
-// TO DO: add points to user and display to screen
+/* addPointToPlayer() -> null
+    Require: nothing
+    Purpose: Add a point to winning player (based on who's turn it is using xTurn)
+*/
 const addPointToPlayer = () => {
     // use XTurn to determine who to add a point to 
     xTurn ? xPoints += 1 : oPoints += 1
@@ -110,9 +113,8 @@ const addPointToPlayer = () => {
 const handleCellMouseOver = (e) => {
     // get cell location 
     const cell = e.target
-    if (isCellTaken(cell)) return // dont re-write mark if cell is "taken"
-    addPlayerMarkToCellClassList(cell)
-    // const [rowIndex, colIndex] = getCellLocation(cell)
+    if (isCellTaken(cell)) return // exit if cell is "taken"
+    addPlayerMarkToCellClassList(cell) // add mark to cell
 }
 
 /* handleCellMouseOut(e)
@@ -121,9 +123,8 @@ const handleCellMouseOver = (e) => {
 */
 const handleCellMouseOut = (e) => {
     const cell = e.target
-    if(isCellTaken(cell)) return // dont remove mark if cell is "taken"
-    removePlayerMarkToCellClassList(cell)
-    addPointToPlayer()
+    if(isCellTaken(cell)) return // exit if cell is "taken"
+    removePlayerMarkToCellClassList(cell) // remove mark from cell
 }
 
 /* handleCellClick(e)
@@ -131,12 +132,26 @@ const handleCellMouseOut = (e) => {
     Purpose: If cell is not taken, add X or O mark depending on which player's turn it is
 */
 const handleCellClick = (e) => {
-    // get cell
-    // check if its taken
-    // add X or O
+    const cell = e.target // get cell
 
-    // check game status: true or false
-    // stop game if someone won
+    const isTaken = isCellTaken(cell) // check if its taken
+    if(isTaken) {
+        alert ("This cell is already taken. Select another cell.")
+        return
+    }
+    
+    addPlayerMarkToCellClassList(cell) // add X or O and taken to classList
+    cell.classList.add("taken") 
+
+    // check game status: true or false 
+
+    // exit if someone won
+    if (!gameIsLive) return
+
+    // switch player
+    xTurn = !xTurn
+
+    
 }
 
 //////////////// ADD EVENTS ////////////////
