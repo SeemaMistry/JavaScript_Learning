@@ -268,7 +268,8 @@ const checkStatusOfGame = (lastTakenCell) => {
             }
         }
     }
-    gameMsgEl.textContent = "It's a tie! Play another round, or exit."
+    gameIsLive = false
+    gameMsgEl.textContent = "It's a tie! Play another round, or exit game"
 
 }
 
@@ -279,6 +280,7 @@ const checkStatusOfGame = (lastTakenCell) => {
     Purpose: When mouse hovers over a cell of the grid, show player's X or O on square
 */
 const handleCellMouseOver = (e) => {
+    if (!gameIsLive) return
     // get cell location 
     const cell = e.target
     if (isCellTaken(cell)) return // exit if cell is "taken"
@@ -300,6 +302,7 @@ const handleCellMouseOut = (e) => {
     Purpose: If cell is not taken, add X or O mark depending on which player's turn it is
 */
 const handleCellClick = (e) => {
+    if (!gameIsLive) return
     const cell = e.target // get cell
 
     const isTaken = isCellTaken(cell) // check if its taken
@@ -319,6 +322,7 @@ const handleCellClick = (e) => {
 
     // switch player
     xTurn = !xTurn
+
 }
 
 //////////////// ADD EVENTS ////////////////
