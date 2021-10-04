@@ -114,11 +114,19 @@ const addPointToPlayer = () => {
                 -> Winner return false
 */
 const winnerArrayCheck = (winnerArray) => {
-    if (winnerArray.length < 3) return true // not winner, gameIsLive = true
+    if (winnerArray[0].length !==3 && winnerArray[1].length !== 3) { 
+        console.log("Not 3 in a row")
+        return true
+    }
+
+
+    // if (winnerArray.length < 3) return true // not winner, gameIsLive = true
 
     // for winner, add "win" class to each cell to highlight later, gameIsLive = false
-    for (const cell of winnerArray) {
-        cell.classList.add("win")
+    for (const direction of winnerArray) {
+        for (const cell of direction) {
+            cell.classList.add("win")
+        }
     }
     addPointToPlayer() // give player point
     return false
@@ -145,8 +153,11 @@ const checkStatusOfGame = (lastTakenCell) => {
     const [rowIndex, colIndex] = getCellLocation(lastTakenCell)
     const rowLength = rows[rowIndex].length
     const columnLength = columns[colIndex].length
-
-    let winner = [lastTakenCell]
+    let horizontal = [lastTakenCell]
+    let vertical = [lastTakenCell]
+    let diagonalLeftToRight = [lastTakenCell]
+    let diagonalRightToLeft = [lastTakenCell]
+    let winner = [horizontal, vertical, diagonalLeftToRight, diagonalRightToLeft]
 
     // CHECK HORIZONTALLY --- left side
     let col = colIndex - 1 // get cell left
@@ -154,25 +165,21 @@ const checkStatusOfGame = (lastTakenCell) => {
     while(col >= 0) {
         const cellToCheck = rows[rowIndex][col]
         if (xTurn ? cellToCheck.classList.contains("X") : cellToCheck.classList.contains("O")) {
-            winner.push(cellToCheck)
+            horizontal.push(cellToCheck)
             col--
         } else {break}
     }
-
+   
     // CHECK HORIZONTALLY --- right side
      col = colIndex + 1 // get cell right
     // loop until out of bound
     while(col < rowLength) {
         const cellToCheck = rows[rowIndex][col]
         if (xTurn ? cellToCheck.classList.contains("X") : cellToCheck.classList.contains("O")) {
-            winner.push(cellToCheck)
+            horizontal.push(cellToCheck)
             col++
         } else {break}
     }
-
-    gameIsLive = winnerArrayCheck(winner) // call winnerArrayCheck
-    if (!gameIsLive) return // exit if winner found 
-    winner = [lastTakenCell] // reset winner[]
 
     // CHECK VERTICALLY --- down 
     let row = rowIndex + 1 // get cell below
@@ -180,7 +187,7 @@ const checkStatusOfGame = (lastTakenCell) => {
     while(row < columnLength) {
         const cellToCheck = rows[row][colIndex]
         if (xTurn ? cellToCheck.classList.contains("X") : cellToCheck.classList.contains("O")) {
-            winner.push(cellToCheck)
+            vertical.push(cellToCheck)
             row++
         } else {break}
     }
@@ -191,19 +198,21 @@ const checkStatusOfGame = (lastTakenCell) => {
     while(row >= 0) {
         const cellToCheck = rows[row][colIndex]
         if (xTurn ? cellToCheck.classList.contains("X") : cellToCheck.classList.contains("O")) {
-            winner.push(cellToCheck)
+            vertical.push(cellToCheck)
             row--
         } else {break}
     }
 
+
+
+    // at the end check if you have any winning arrays inside winner [ [], [], [], [] ]
     gameIsLive = winnerArrayCheck(winner) // call winnerArrayCheck
     if (!gameIsLive) return // exit if winner found 
     winner = [lastTakenCell] // reset winner[]
 
 
 
-    // at the end
-    // return gameIsLive
+  
 }
 
 //////////////// HANDLE EVENTS ////////////////
