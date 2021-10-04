@@ -142,7 +142,7 @@ const checkStatusOfGame = (lastTakenCell) => {
     // get row, column of cell, make winner[]
     const [rowIndex, colIndex] = getCellLocation(lastTakenCell)
     let winner = [lastTakenCell]
-    const rowLength = rows[row].length
+    const rowLength = rows[rowIndex].length
     const columnLength = columns[colIndex].length
 
     // CHECK HORIZONTALLY --- left side
@@ -150,25 +150,30 @@ const checkStatusOfGame = (lastTakenCell) => {
     // loop until out of bound
     while(col >= 0) {
         const cellToCheck = rows[rowIndex][col]
-        if (cellToCheck.classList.includes("X")) {
+        if (cellToCheck.classList.contains("X")) {
             winner.push(cellToCheck)
+            col--
         } else {break}
     }
 
     // CHECK HORIZONTALLY --- right side
-     let col = colIndex + 1 // get cell right
+     col = colIndex + 1 // get cell right
     // loop until out of bound
     while(col < rowLength) {
         const cellToCheck = rows[rowIndex][col]
-        if (cellToCheck.classList.includes("X")) {
+        if (cellToCheck.classList.contains("X")) {
             winner.push(cellToCheck)
+            col++
         } else {break}
     }
-
-    gameIsLive = winnerCheck(winner) // call winnerCheck
+    console.log(winner)
+    gameIsLive = winnerArrayCheck(winner) // call winnerArrayCheck
     if (!gameIsLive) return // exit if winner found 
     winner = [lastTakenCell] // reset winner[]
 
+
+    // at the end
+    // return gameIsLive
 }
 
 //////////////// HANDLE EVENTS ////////////////
@@ -210,8 +215,10 @@ const handleCellClick = (e) => {
     addPlayerMarkToCellClassList(cell) // add X or O and taken to classList
     cell.classList.add("taken") 
 
+    console.log("Right before check status of game call")
     // check game status: true or false 
-
+    checkStatusOfGame(cell)
+    console.log(gameIsLive)
     // exit if someone won
     if (!gameIsLive) return
 
