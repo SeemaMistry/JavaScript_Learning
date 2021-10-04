@@ -143,16 +143,17 @@ const winnerArrayCheck = (winnerArray) => {
 const checkStatusOfGame = (lastTakenCell) => {
     // get row, column of cell, make winner[]
     const [rowIndex, colIndex] = getCellLocation(lastTakenCell)
-    let winner = [lastTakenCell]
     const rowLength = rows[rowIndex].length
     const columnLength = columns[colIndex].length
+
+    let winner = [lastTakenCell]
 
     // CHECK HORIZONTALLY --- left side
     let col = colIndex - 1 // get cell left
     // loop until out of bound
     while(col >= 0) {
         const cellToCheck = rows[rowIndex][col]
-        if (cellToCheck.classList.contains("X") || cellToCheck.classList.contains("O")) {
+        if (xTurn ? cellToCheck.classList.contains("X") : cellToCheck.classList.contains("O")) {
             winner.push(cellToCheck)
             col--
         } else {break}
@@ -163,15 +164,42 @@ const checkStatusOfGame = (lastTakenCell) => {
     // loop until out of bound
     while(col < rowLength) {
         const cellToCheck = rows[rowIndex][col]
-        if (cellToCheck.classList.contains("X") || cellToCheck.classList.contains("O")) {
+        if (xTurn ? cellToCheck.classList.contains("X") : cellToCheck.classList.contains("O")) {
             winner.push(cellToCheck)
             col++
         } else {break}
     }
-    console.log(winner)
+
     gameIsLive = winnerArrayCheck(winner) // call winnerArrayCheck
     if (!gameIsLive) return // exit if winner found 
     winner = [lastTakenCell] // reset winner[]
+
+    // CHECK VERTICALLY --- down 
+    let row = rowIndex + 1 // get cell below
+    // loop until out of bound
+    while(row < columnLength) {
+        const cellToCheck = rows[row][colIndex]
+        if (xTurn ? cellToCheck.classList.contains("X") : cellToCheck.classList.contains("O")) {
+            winner.push(cellToCheck)
+            row++
+        } else {break}
+    }
+
+    // CHECK VERTICALLY --- up 
+    row = rowIndex - 1 // get cell above
+    // loop until out of bound
+    while(row >= 0) {
+        const cellToCheck = rows[row][colIndex]
+        if (xTurn ? cellToCheck.classList.contains("X") : cellToCheck.classList.contains("O")) {
+            winner.push(cellToCheck)
+            row--
+        } else {break}
+    }
+
+    gameIsLive = winnerArrayCheck(winner) // call winnerArrayCheck
+    if (!gameIsLive) return // exit if winner found 
+    winner = [lastTakenCell] // reset winner[]
+
 
 
     // at the end
@@ -217,10 +245,9 @@ const handleCellClick = (e) => {
     addPlayerMarkToCellClassList(cell) // add X or O and taken to classList
     cell.classList.add("taken") 
 
-    console.log("Right before check status of game call")
     // check game status: true or false 
     checkStatusOfGame(cell)
-    console.log(gameIsLive)
+
     // exit if someone won
     if (!gameIsLive) return
 
