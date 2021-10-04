@@ -96,6 +96,30 @@ button {
     text-transform: uppercase;
 }
 
-.score {
-    text-align: left;
+#score-el {
+    /* text-align: left; */
+
+    margin-top: 20px;
+    align-items:center;
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
+#xScore-el {
+    /* text-align: left; */
+
+    margin-top: 20px;
+    align-items:center;
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
+#oScore-el {
+    /* text-align: left; */
+
+    margin-top: 20px;
+    align-items:center;
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
 }
