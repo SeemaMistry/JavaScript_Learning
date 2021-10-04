@@ -25,8 +25,8 @@ const columns = [col0, col1, col2]
 let gameIsLive = true
 let xTurn = true
 
-let xPoints = 10
-let oPoints = 3
+let xPoints = 0
+let oPoints = 0
 
 xPointsEl.textContent = xPoints
 oPointsEl.textContent = oPoints
@@ -96,11 +96,11 @@ const isCellTaken = (cell) => {
 
 //////////////// HANDLE EVENTS ////////////////
 
-/* handleMouseOver(e)
+/* handleCellMouseOver(e)
     Require: e = event on a cell
     Purpose: When mouse hovers over a cell of the grid, show player's X or O on square
 */
-const handleMouseOver = (e) => {
+const handleCellMouseOver = (e) => {
     // get cell location 
     const cell = e.target
     if (isCellTaken(cell)) return // dont re-write mark if cell is "taken"
@@ -108,24 +108,31 @@ const handleMouseOver = (e) => {
     // const [rowIndex, colIndex] = getCellLocation(cell)
 }
 
-/* handleMouseOut(e)
+/* handleCellMouseOut(e)
     Require: e = event on a cell
     Purpose: When mouse moves away from a cell of the grid, remove player's X or O on square
 */
-const handleMouseOut = (e) => {
+const handleCellMouseOut = (e) => {
     const cell = e.target
     if(isCellTaken(cell)) return // dont remove mark if cell is "taken"
     removePlayerMarkToCellClassList(cell)
 }
 
+/* handleCellClick(e)
+    Require: e = event on a cell
+    Purpose: If cell is not taken, add X or O mark depending on which player's turn it is
+*/
+const handleCellClick = (e) => {}
+
 //////////////// ADD EVENTS ////////////////
 for (const row of rows) {
     for (const cell of row) {
         // hover on
-        cell.addEventListener("mouseover", handleMouseOver)
+        cell.addEventListener("mouseover", handleCellMouseOver)
         // hover off
-        cell.addEventListener("mouseout", handleMouseOut)
+        cell.addEventListener("mouseout", handleCellMouseOut)
         // click
+        cell.addEventListener("click", handleCellClick)
     }
 }
 
@@ -134,9 +141,9 @@ anotherRoundBtn.addEventListener("click", function () {
     gameIsLive = true
 })
 
-exitBtn.addEventListener("click", function() {
+exitBtn.addEventListener("dblclick", function() {
     clearGridCells()
-    
+
     gameIsLive = true
     xTurn = true
 
