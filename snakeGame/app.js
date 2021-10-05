@@ -15,8 +15,17 @@ for (let i=0; i < 10; i++) {
         squares += (k === 0) ? `wall-left ` : ``
         squares += (k === 9) ? `wall-right ` : ``
 
-        // add tunnels
-        // squares += ((i === 0) && (k === (1 || 2 || 7 || 8))) ? `tunnel ` : ``
+        // add tunnels x8
+        squares += (i === 0 && (k === 1 || k === 2) ) ? `tunnel-top` : ``
+        squares += (i === 0 && (k === 7 || k === 8) ) ? `tunnel-top` : ``
+        squares += (i === 9 && (k === 1 || k === 2) ) ? `tunnel-bottom` : ``
+        squares += (i === 9 && (k === 7 || k === 8) ) ? `tunnel-bottom` : ``
+
+        squares += (k === 0 && (i  === 1 || i === 2) ) ? `tunnel-left` : ``
+        squares += (k === 0 && (i  === 7 || i === 8) ) ? `tunnel-left` : ``
+        squares += (k === 9 && (i  === 1 || i === 2) ) ? `tunnel-right` : ``
+        squares += (k === 9 && (i  === 7 || i === 8) ) ? `tunnel-right` : ``
+
 
         squares += `"></div>` 
 

@@ -28,7 +28,6 @@ body {
 .cell {
     height: 30px;
     width:30px;
-    background: chartreuse;
     display: flex;
     align-items: center;
 }
@@ -38,4 +37,7 @@ body {
 .cell.wall-left {border-left: black 7px solid;}
 .cell.wall-right {border-right: black 7px solid;}
 
-.cell.tunnel {border-top:  blue 4px solid;}
+.cell.tunnel-top {border-top:  blue 4px solid;}
+.cell.tunnel-bottom {border-bottom:  blue 4px solid;}
+.cell.tunnel-left {border-left:  blue 4px solid;}
+.cell.tunnel-right {border-right:  blue 4px solid;}
