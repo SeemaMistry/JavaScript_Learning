@@ -17,26 +17,47 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
     margin: 10px 0 25px;
-    height: 300px;
-    width: 300px;
-    background:lightgray;
+    height: 380px;
+    width: 380px;
+    border: black 10px solid;
+
 }
+
+
 
 .cell {
     height: 30px;
-    width:30px;
+    width: 30px;
     display: flex;
     align-items: center;
-
+    background:lightgray;
 }
 
 .cell.dark {
     background: grey;
-
 }
+
+.wall {
+    background: pink;
+}
+
+
+/* .cell.wall-top {
+    border-bottom: black 10px solid;
+}
+.cell.wall-bottom {
+    border-top: black 10px solid;
+}
+.cell.wall-left {
+    border-right: black 10px solid;
+}
+.cell.wall-right {
+    border-right: black 10px solid;
+} */
+
 
 .cell.snake::after {
     background: green;
@@ -44,8 +65,3 @@ body {
     height: 30px;
     width: 30px;
 }
-
-.cell.wall-top {border-top: black 10px solid;}
-.cell.wall-bottom {border-bottom: black 10px solid;}
-.cell.wall-left {border-left: black 10px solid;}
-.cell.wall-right {border-right: black 10px solid;}
