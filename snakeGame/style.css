@@ -32,6 +32,10 @@ body {
     align-items: center;
 }
 
+.cell.dark {
+    background: grey;
+}
+
 .cell.wall-top {border-top: black 7px solid;}
 .cell.wall-bottom {border-bottom: black 7px solid;}
 .cell.wall-left {border-left: black 7px solid;}

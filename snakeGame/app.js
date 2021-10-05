@@ -4,10 +4,21 @@ const grid = document.querySelector(".grid")
 
 // Make rows and columns
 let squares = ""
+let cellCount = 1
+let rowCount = 0
 // row = i, columns = k
 for (let i=0; i < 10; i++) {
     for (let k=0; k < 10; k++) {
         squares += `<div class="cell row-${i} col-${k} `
+
+        // checkered board
+        squares += (rowCount % 2 === 0 && cellCount % 2 === 0) ? `dark ` : `` // even row, dark on even cell
+        squares += (rowCount % 2 !== 0 && cellCount % 2 !== 0) ? `dark ` : ``// odd rows, dark on odd cells
+        
+        rowCount += (cellCount % 10 === 0) ? 1 : 0 // next row
+        cellCount++
+
+
         // add walls 
         squares += (i === 0) ? `wall-top ` : ``
         squares += (i === 9) ? `wall-bottom ` : ``
