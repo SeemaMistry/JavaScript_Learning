@@ -30,26 +30,27 @@ body {
     width:30px;
     display: flex;
     align-items: center;
+
 }
 
 .cell.dark {
     background: grey;
+
 }
 
 .cell.snake::after {
     background: green;
-    /* border-radius: 30%;   */
     content: '';
     height: 30px;
     width: 30px;
 }
 
-.cell.wall-top {border-top: black 7px solid;}
-.cell.wall-bottom {border-bottom: black 7px solid;}
-.cell.wall-left {border-left: black 7px solid;}
-.cell.wall-right {border-right: black 7px solid;}
+.cell.wall-top {border-top: black 10px solid;}
+.cell.wall-bottom {border-bottom: black 10px solid;}
+.cell.wall-left {border-left: black 10px solid;}
+.cell.wall-right {border-right: black 10px solid;}
 
-.cell.tunnel-top {border-top:  blue 4px solid;}
-.cell.tunnel-bottom {border-bottom:  blue 4px solid;}
-.cell.tunnel-left {border-left:  blue 4px solid;}
-.cell.tunnel-right {border-right:  blue 4px solid;}
+.cell.tunnel-top {border-top:  none;}
+.cell.tunnel-bottom {border-bottom:  none;}
+.cell.tunnel-left {border-left:  none;}
+.cell.tunnel-right {border-right: none;}
