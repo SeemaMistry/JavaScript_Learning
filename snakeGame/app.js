@@ -42,11 +42,6 @@ for (let i=0; i < 12; i++) {
 
         squares += ((i ===2 || i ===3) && (k ===0 || k ===11)) ? `tunnel-set3 ` : ``
         squares += ((i ===8 || i ===9) && (k ===0 || k ===11)) ? `tunnel-set4 ` : ``
-        
-        squares += (i === 4 && k === 9) ? `snake ` : ``
-        squares += (i === 5 && k === 6) ? `snake ` : ``
-        squares += (i === 5 && k === 4) ? `snake ` : ``
-        squares += (i === 5 && k === 7) ? `snake ` : ``
 
         squares += `"></div>` 
 
@@ -72,7 +67,6 @@ let row10 = []
 let rowBottomWall = []
 const rows = [rowTopWall,row1,row2,row3,row4,row5,row6,row7,row8,row9,row10,rowBottomWall]
 
-
 let colLeftWall = []
 let col1 = []
 let col2 = []
@@ -97,3 +91,21 @@ for (let i=1; i < allCells.length; i++) {
 for (let i = 0; i < allCells.length; i++) {
     columns[i%12].push(allCells[i])
 }
+
+// getcelllocation -> [int, int]
+// getclasslistarray -> [...classList]
+// issnakebody -> true/false
+// istunnel -> true/false, true then find celllocation and tunnelset, based on tunnelset determine next coordinate of snake on opposite side
+// iswall -> true/false, true then gameover
+// isfood -> true/false, true when snake head over a food
+// addtosnakebody -> adds to snake body tail end
+// randomnumbergenerator -> [int, int] picks location on grid to drop food randomly on set interval
+// addSnakeClass -> null adds snake class to cell classlist
+// removesnakeclass -> null removes snake class from cell classlist
+// addfood -> null add food to cell classlist
+// removefood -> null remove food from cell classlist
+// checkStatusOfGame -> null
+
+// event listeners. keypresses https://stackoverflow.com/questions/5597060/detecting-arrow-key-presses-in-javascript
+
+
