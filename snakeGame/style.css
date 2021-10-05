@@ -36,9 +36,13 @@ body {
     background: grey;
 }
 
-.cell.snake {
-    background:green;
-    border-radius: 30%;
+.cell.snake::after {
+    background: green;
+    /* border-radius: 30%;   */
+    content: '';
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
 }
 
 .cell.wall-top {border-top: black 7px solid;}
