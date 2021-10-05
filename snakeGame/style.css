@@ -36,6 +36,11 @@ body {
     background: grey;
 }
 
+.cell.snake {
+    background:green;
+    border-radius: 30%;
+}
+
 .cell.wall-top {border-top: black 7px solid;}
 .cell.wall-bottom {border-bottom: black 7px solid;}
 .cell.wall-left {border-left: black 7px solid;}
