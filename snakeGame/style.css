@@ -49,8 +49,3 @@ body {
 .cell.wall-bottom {border-bottom: black 10px solid;}
 .cell.wall-left {border-left: black 10px solid;}
 .cell.wall-right {border-right: black 10px solid;}
-
-.cell.tunnel-top {border-top:  none;}
-.cell.tunnel-bottom {border-bottom:  none;}
-.cell.tunnel-left {border-left:  none;}
-.cell.tunnel-right {border-right: none;}
