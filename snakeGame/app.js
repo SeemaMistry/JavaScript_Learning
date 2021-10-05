@@ -1,5 +1,7 @@
 //////////////// DOM ///////////////////
 const grid = document.querySelector(".grid")
+const pointsEl = document.querySelector("#points-el")
+const startBtn = document.querySelector("#start-btn")
 
 
 // Make rows and columns
@@ -92,6 +94,13 @@ for (let i = 0; i < allCells.length; i++) {
     columns[i%12].push(allCells[i])
 }
 
+//////////////// VARIABLES ///////////////////
+let gameIsLive = true
+let snake = [] // it will appear randomly on the grid
+let points = 0
+
+//////////////// UTILITY FUNCTIONS ///////////////////
+
 // getcelllocation -> [int, int]
 // getclasslistarray -> [...classList]
 // issnakebody -> true/false
@@ -99,13 +108,23 @@ for (let i = 0; i < allCells.length; i++) {
 // iswall -> true/false, true then gameover
 // isfood -> true/false, true when snake head over a food
 // addtosnakebody -> adds to snake body tail end
-// randomnumbergenerator -> [int, int] picks location on grid to drop food randomly on set interval
+    // randomnumbergenerator -> [int, int] picks location on grid to drop food randomly on set interval
 // addSnakeClass -> null adds snake class to cell classlist
 // removesnakeclass -> null removes snake class from cell classlist
 // addfood -> null add food to cell classlist
 // removefood -> null remove food from cell classlist
 // checkStatusOfGame -> null
 
+
+
+//////////////// HANDLE EVENTS ///////////////////
+
+
+
+//////////////// ADD EVENTS ///////////////////
+
 // event listeners. keypresses https://stackoverflow.com/questions/5597060/detecting-arrow-key-presses-in-javascript
+
+
 
 
