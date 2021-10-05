@@ -36,11 +36,11 @@ for (let i=0; i < 10; i++) {
         squares += (k === 9 && (i  === 7 || i === 8) ) ? `tunnel-right ` : ``
 
         // pair tunnel sets {1,2,3,4}
-        squares += ((i === 0 || i === 9) && (k === 1 || k === 2)) ? `tunnel-set1` : ``
-        squares += ((i === 0 || i === 9) && (k === 7 || k === 8)) ? `tunnel-set2` : ``
+        squares += ((i === 0 || i === 9) && (k === 1 || k === 2)) ? `tunnel-set1 ` : ``
+        squares += ((i === 0 || i === 9) && (k === 7 || k === 8)) ? `tunnel-set2 ` : ``
 
-        squares += ((i === 1 || i === 2) && (k === 0 || k === 9)) ? `tunnel-set3` : ``
-        squares += ((i === 7 || i === 8) && (k === 0 || k === 9)) ? `tunnel-set4` : ``
+        squares += ((i === 1 || i === 2) && (k === 0 || k === 9)) ? `tunnel-set3 ` : ``
+        squares += ((i === 7 || i === 8) && (k === 0 || k === 9)) ? `tunnel-set4 ` : ``
         
         squares += (i === 5 && k === 5) ? `snake ` : ``
         squares += (i === 5 && k === 6) ? `snake ` : ``
