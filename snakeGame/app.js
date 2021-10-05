@@ -54,5 +54,46 @@ for (let i=0; i < 12; i++) {
 }
 grid.innerHTML += squares
 
+const allCells = document.querySelectorAll(".cell")
 
 // Sort rows and columns
+
+let rowTopWall = []
+let row1 = []
+let row2 = []
+let row3 = []
+let row4 = []
+let row5 = []
+let row6 = []
+let row7 = []
+let row8 = []
+let row9 = []
+let row10 = []
+let rowBottomWall = []
+const rows = [rowTopWall,row1,row2,row3,row4,row5,row6,row7,row8,row9,row10,rowBottomWall]
+
+
+let colLeftWall = []
+let col1 = []
+let col2 = []
+let col3 = []
+let col4 = []
+let col5 = []
+let col6 = []
+let col7 = []
+let col8 = []
+let col9 = []
+let col10 = []
+let colRightWall = []
+const columns = [colLeftWall,col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,colRightWall]
+
+let r = 0
+for (let i=1; i < allCells.length; i++) {
+    rows[r].push(allCells[i-1])
+    console.log(r)
+    if (i % 12 === 0) {r++} 
+}
+
+for (let i = 0; i < allCells.length; i++) {
+    columns[i%12].push(allCells[i])
+}
