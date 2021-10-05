@@ -40,7 +40,6 @@ body {
     background: green;
     /* border-radius: 30%;   */
     content: '';
-    cursor: pointer;
     height: 30px;
     width: 30px;
 }
