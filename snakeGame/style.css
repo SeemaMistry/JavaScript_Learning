@@ -20,9 +20,9 @@ body {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);
     margin: 10px 0 25px;
-    height: 380px;
-    width: 380px;
-    border: black 10px solid;
+    height: 360px;
+    width: 360px;
+    /* border: black 10px solid; */
 
 }
 
@@ -40,24 +40,73 @@ body {
     background: grey;
 }
 
-.wall {
-    background: pink;
-}
 
 
-/* .cell.wall-top {
+.cell.wall-top {
     border-bottom: black 10px solid;
+    background: white;
+    /* width:30px; */
+    /* height: 10px; */
 }
 .cell.wall-bottom {
     border-top: black 10px solid;
+    background: white;
+    /* width:30px;
+    height: 10px; */
 }
 .cell.wall-left {
     border-right: black 10px solid;
+    background: white;
+    /* width:10px;
+    height: 30px; */
+    
 }
 .cell.wall-right {
-    border-right: black 10px solid;
-} */
+    border-left: black 10px solid;
+    background: white;
+    /* width:10px;
+    height: 30px; */
+    
+}
+/* Make the corners small squares */
+.cell.row-0.col-11 {
+    width:10px;
+    height: 10px;
+    margin-top:20px;
+}
+.cell.row-0.col-0 {
+    width:10px;
+    height: 10px;
+    margin-top:20px;
+    margin-left: 20px;
+}
+.cell.row-11.col-0 {
+    width:10px;
+    height: 10px;
+    margin-left: 20px;
+}
+.cell.row-11.col-11 {
+    width:10px;
+    height: 10px;
+}
 
+.cell.tunnel-set1 {
+    background: white; 
+    /* width:30px;
+    height: 10px; */
+}
+.cell.tunnel-set2 {background: white;
+    /* width:30px;
+    height: 10px; */
+}
+.cell.tunnel-set3 {background: white;
+    /* width:10px;
+    height: 30px; */
+}
+.cell.tunnel-set4 {background: white;
+    /* width:10px;
+    height: 10px; */
+}
 
 .cell.snake::after {
     background: green;
